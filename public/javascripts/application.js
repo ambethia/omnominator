@@ -1,7 +1,7 @@
 google.load("maps", "2");
 
 function initializeMap() {  
-  var zoom     = 4;
+  var zoom     = 3;
   var latLng   = new GLatLng(39.50, -98.35);
   var location = "Anytown, USA";
   if (google.loader.ClientLocation) {
