@@ -6,5 +6,6 @@ class Mailer < ActionMailer::Base
     @sent_on            = Time.now
     @body[:ppl_email]   = ppl_email
     @body[:url]         = "http://failblog.com" #url_for(:host => host, :action=>"index", :controller=>"home")
+    @body[:creator]     = omnom.creator.name.nil? ? omnom.creator.email : omnom.creator.name
   end
 end
