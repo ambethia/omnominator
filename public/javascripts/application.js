@@ -21,19 +21,16 @@ function initializeMap() {
 
 function initializeMarkers() {
   var icon        = new GIcon();
-  icon.image      = "/images/yelp_star.png";
-  icon.shadow     = "/images/yelp_shadow.png";
+  icon.image      = "/images/markers/yelp_star.png";
+  icon.shadow     = "/images/markers/yelp_shadow.png";
   icon.iconSize   = new GSize(20, 29);
   icon.shadowSize = new GSize(38, 29);
   icon.iconAnchor = new GPoint(15, 29);  
   
-  var sushi       = new GIcon(icon, "/images/sushi_icon.gif")
+  var sushi       = new GIcon(icon, "/images/markers/sushi.png")
   
   categoryIcons = {
-    "sushi":      sushi,
-    "pizza":      "pizza",
-    "vietnamese": "noodles",
-    "thai":       "noodles",
+    "sushi":      sushi
   }
   
   defaultIcon = icon;
@@ -56,7 +53,16 @@ function createMapMarker(business, position, index) {
   GEvent.addListener(marker, "mouseover",function() { showTooltip(this, info) });
   GEvent.addListener(marker, "mouseout", function() { $("#tooltip").fadeOut() });
   GEvent.addListener(marker, "click",    function() {
-    // do something here
+    var yelp_details = {
+      address: [business.address1, business.address2, business.address3].join(" "),
+      phone: business.phone,
+      url: business.url
+    }
+    var details = $.template('${address}<br/>${phone} (<a href="${url}">Reviews</a>)').apply(yelp_details);
+    addNewOmnom({
+      name: business.name,
+      details: details
+    })
   });
   map.addOverlay(marker);
 }
@@ -152,6 +158,12 @@ function doGeoLocation(query) {
   });
 }
 
+function addNewOmnom(omnom) {
+  var template = $.template('<li><span class="name">${name}</span><br/><span class="details">${details}</span></li>');
+  var nom_item = template.apply(omnom);
+  $("#sum_omnoms").append(nom_item).children(':last').hide().blindDown();
+}
+
 $(document).ready(function() {
   initializeMap();
   initializeMarkers();
@@ -168,4 +180,12 @@ $(document).ready(function() {
   });
   
   $("#tooltip").hide();
+
+  $("#new_omnom").submit(function() {
+    addNewOmnom({
+      name: this.new_omnom_name.value,
+      details: this.new_omnom_details.value
+    });
+    return false;
+  });
 });

@@ -11,3 +11,24 @@
   padding: 2px;
   z-index: 5000;
 }
+
+#icanhaznoms {
+  background-color: red;
+  float: left;
+  width: 320px;
+}
+
+#omnoms {
+  float: left;
+  width: 320px;
+}
+
+#ohaipplz {
+  background-color: blue;
+  float: left;
+  width: 320px;
+}
+
+#sum_omnoms .name {
+  font-weight: bold;
+}

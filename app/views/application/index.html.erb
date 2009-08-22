@@ -1,9 +1,37 @@
-<div id="tooltip"></div><div id="map_canvas"></div>
-<form action="#" method="get" id="location_form">
-  <label>
-    Move Map (City, State or Zip)
-    <input type="text" name="location_text" value="" id="location_text"/>
-  </label>
-  <input type="submit" value="Go &rarr;"/>
-</form>
-<%= genre_input_list %>
+<div id="icanhaznoms">
+  <div id="tooltip"></div>
+  <div id="map_canvas"></div>
+  <form action="#" method="get" id="location_form">
+    <div>
+      <label>
+        Move Map (City, State or Zip)
+        <input type="text" name="location_text" value="" id="location_text"/>
+      </label>
+      <input type="submit" value="Go &rarr;"/>
+    </div>
+  </form>
+  <%= genre_input_list %>
+</div>
+
+<div id="omnoms">
+  <h2>Omnoms.!</h2>
+
+  <ul id="sum_omnoms">
+    <li>
+      <div class="name">Mema's Alaskan Tacos</div>
+      <div class="details">123 Main St<br/>(813) 514-TACO (<a href="${url}">Reviews</a>)</div>
+      <div class="close">X</div>
+    </li>
+  </ul>
+
+  <form action="#" method="get" id="new_omnom">
+    <p><input type="text" name="new_omnom_name" id="new_omnom_name"/></p>
+    <p><textarea name="new_omnom_details" id="new_omnom_details" rows="3" cols="24"></textarea></p>
+    <p><input type="submit" value="Add"/></p>
+  </form>
+</div>
+
+<div id="ohaipplz">
+  <h2>Pplz</h2>
+</div>
+
