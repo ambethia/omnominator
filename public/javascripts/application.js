@@ -96,7 +96,7 @@ function showTooltip(marker, infoHTML) {
 
 function getBusinessIcon(business) {
   var icon = null;
-  jQuery.each(business.categories, function() {
+  $.each(business.categories, function() {
     icon = categoryIcons[this.category_filter];
     if (icon)
       return false;
@@ -116,6 +116,7 @@ function yelp() {
             "&ywsid="    + "kIXgBO4ryiAN3oPxskwNmg";
   $.getJSON(URI, function(data){
     if(data.message.text == "OK") {
+      $("#yelp_message").text("Om nom nom nom...")
       map.clearOverlays();
       if (data.businesses.length > 0) {
         for(var i = 0; i < data.businesses.length; i++) {
@@ -124,12 +125,16 @@ function yelp() {
           createMapMarker(business, position, i);
         }
       } else {
-        // do something here
-        console.log("No businesses found.");
+        $("#yelp_message").text("No noms... qq.")
       }
     }
     else {
-      console.log("Yelp Error: " + data.message.text);
+      var message = data.message.text;
+      if (message == "Area too large") {
+        $("#yelp_message").text("Zoom moar!");
+      } else {
+        $("#yelp_message").text("Error: " + message);
+      }
     }
   });
 }
@@ -150,10 +155,10 @@ function categoriesFilterString() {
   }
 }
 
-function doGeoLocation(query) {
+function iCanHazLocation(query) {
   geocoder.getLatLng(query, function(point) {
     if (!point) {
-      console.log("Couldn't geolocate '"+query+"'")
+      $.flash.failure("A Google says wut?", "Can't geolocate: " + query);
     } else {
       map.setCenter(point, 12);
     }
@@ -166,15 +171,19 @@ function addNom(omnom) {
     var template = $.template('<li><div class="name">${name}</div><div class="details">${details}</div><div class="remove">X</div></li>');
     var nom_item = template.apply(omnom);
     list.append(nom_item).children(':last').hide().blindDown();
-    $("#sum_noms div.remove").click(removeNom);
+    $("#sum_noms .remove").click(removeNom);
   } else {
-    jQuery.flash.warn("My belly hurts", "Too much noms.")
+    $.flash.warn("My belly hurts", "Too much noms.")
   };
   $("#new_nom").reset();
 }
 
 function removeNom() {
   $(this).parent().blindUp().remove();
+}
+
+function createOmnom() {
+  return false;
 }
 
 $(document).ready(function() {
@@ -184,7 +193,7 @@ $(document).ready(function() {
   geocoder = new GClientGeocoder();
 
   $("#location_form").submit(function() {
-    doGeoLocation($("#location_text").get(0).value);
+    iCanHazLocation($("#location_text").get(0).value);
     return false;
   });
   
@@ -201,6 +210,11 @@ $(document).ready(function() {
     });
     return false;
   });
-  
-  $("#sum_noms div.remove").click(removeNom);
+
+  $("#sum_pplz").submit(function() {
+    createOmnom();
+    return false;
+  });
+
+  $("#sum_noms .remove").click(removeNom);
 });

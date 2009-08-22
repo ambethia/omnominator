@@ -1,5 +1,6 @@
 <div id="icanhaznoms">
   <div id="tooltip"></div>
+  <div id="yelp_message">&nbsp;</div>
   <div id="map_canvas"></div>
   <form action="#" met hod="get" id="location_form">
     <div>
@@ -20,7 +21,7 @@
     <li>
       <div class="name">Mema's Alaskan Tacos</div>
       <div class="details">123 Main St<br/>(813) 514-TACO (<a href="${url}">Reviews</a>)</div>
-      <div class="remove">X</div>
+      <a href="#" class="remove">X</a>
     </li>
   </ul>
 
@@ -34,7 +35,7 @@
 <div id="ohaipplz">
   <h2>Pplz</h2>
   
-  <form action="#" method="post" accept-charset="utf-8">
+  <form action="#" method="post" id="sum_pplz">
     <p><input type="text" name="owner_email" id="owner_email"/></p>
     <p><input type="text" name="ppl_emailz[]" id="ppl_email_1"/></p>
     <p><input type="text" name="ppl_emailz[]" id="ppl_email_2"/></p>
