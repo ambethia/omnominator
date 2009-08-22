@@ -1,5 +1,7 @@
 google.load("maps", "2");
 
+var MAX_OMNOMS = 7;
+
 function initializeMap() {  
   var zoom     = 3;
   var latLng   = new GLatLng(39.50, -98.35);
@@ -159,9 +161,20 @@ function doGeoLocation(query) {
 }
 
 function addNewOmnom(omnom) {
-  var template = $.template('<li><span class="name">${name}</span><br/><span class="details">${details}</span></li>');
-  var nom_item = template.apply(omnom);
-  $("#sum_omnoms").append(nom_item).children(':last').hide().blindDown();
+  var list = $("#sum_omnoms");
+  if (list.children("li").length < MAX_OMNOMS) {
+    var template = $.template('<li><div class="name">${name}</div><div class="details">${details}</div><div class="remove">X</div></li>');
+    var nom_item = template.apply(omnom);
+    list.append(nom_item).children(':last').hide().blindDown();
+    $("#sum_omnoms div.remove").click(removeOmnom);
+  } else {
+    jQuery.flash.warn("My belly hurts", "Too much noms.")
+  };
+  $("#new_omnom").reset();
+}
+
+function removeOmnom() {
+  $(this).parent().blindUp().remove();
 }
 
 $(document).ready(function() {
@@ -188,4 +201,6 @@ $(document).ready(function() {
     });
     return false;
   });
+  
+  $("#sum_omnoms div.remove").click(removeOmnom);
 });

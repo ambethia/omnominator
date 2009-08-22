@@ -6,12 +6,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>Omnominator</title>
   <script type="text/javascript" src="http://www.google.com/jsapi?key=<%= GOOGLE_API_KEY %>"></script>
-  <%= javascript_include_tag :defaults, "plugins/jquery.template.js" %>
-  <%= stylesheet_link_tag "screen"  %>
+  <%= javascript_include_tag :defaults, "plugins/jquery.template", "plugins/jquery.flash" %>
+  <%= stylesheet_link_tag "screen", "flash" %>
 </head>
 <body>
 <h1>Omnomnomnom...</h1>
-
+<div id="flash"></div>
 <%= yield %>
 
 </body>

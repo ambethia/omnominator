@@ -1,0 +1,16 @@
+#flash { position: fixed; top: 0px; left: 0px; width: 100%; z-index: 1000; background-color: #569; color: white; background-image: url('/static/img/btn.png'); background-position: bottom; border-bottom: 1px solid #555; }
+#flash, #flash * { cursor: pointer; }
+#flash .yui-b { padding: 5px 0; }
+#flash .yui-b>* { font-size: 128%; }
+#flash label { display: block; text-align: right; font-weight: bold; text-transform: capitalize; }
+#flash label:after { content: ':'; }
+
+#flash.subtle { background-color: #444; color: white; }
+#flash.subtle:hover { background-color: #222; }
+#flash.warning { background-color: #ff0; color: black; }
+#flash.warning:hover { background-color: #ff8; }
+#flash.success { background-color: #595; }
+#flash.success:hover { background-color: #7b7; }
+#flash.failure, #flash.error { background-color: #800; }
+#flash.failure:hover, #flash.error:hover { background-color: #a00; }
+#flash.subtle, #flash.success, #flash.failure, #flash.error { text-shadow: black 2px 2px 2px; }
