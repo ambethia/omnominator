@@ -1,23 +1,23 @@
-class Voter < ActiveRecord::Base
+class Ppl < ActiveRecord::Base
   before_validation_on_create :generate_verification_code
-  belongs_to                  :ballot
-  belongs_to                  :voted_candidate, :class_name => "Candidate"
+  belongs_to                  :omnom
+  belongs_to                  :voted_nom, :class_name => "Nom"
 
   validates_presence_of :email
 
-  # We are the same voter if we have the same email
+  # We are the same ppl if we have the same email
   def ===(other)
     other.email == self.email
   end
 
   def verify!
-    if ballot.creator === self
-      ballot.activate!
+    if omnom.creator === self
+      omnom.activate!
     end
   end
 
-  def voted_for?(candidate)
-    voted_candidate == candidate
+  def voted_for?(nom)
+    voted_nom == nom
   end
 
   private
