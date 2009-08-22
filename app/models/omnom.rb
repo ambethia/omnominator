@@ -9,6 +9,8 @@ class Omnom < ActiveRecord::Base
   validate   :has_at_least_one_nom
   validate   :has_at_least_one_ppl
 
+  accepts_nested_attributes_for :pplz, :noms
+
   attr_accessor :creator_email
 
   def activate!

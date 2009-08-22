@@ -52,21 +52,28 @@ function createMapMarker(business, position, index) {
   var icon        = getBusinessIcon(business);
   var marker      = new GMarker(position, icon);
   
-  GEvent.addListener(marker, "mouseover",function() { showTooltip(this, info) });
-  GEvent.addListener(marker, "mouseout", function() { $("#tooltip").fadeOut() });
-  GEvent.addListener(marker, "click",    function() {
-    var yelp_details = {
-      address: [business.address1, business.address2, business.address3].join(" "),
-      phone: business.phone,
-      url: business.url
-    }
-    var details = $.template('${address}<br/>${phone} (<a href="${url}">Reviews</a>)').apply(yelp_details);
-    addNom({
-      name: business.name,
-      details: details
-    })
-  });
+  GEvent.addListener(marker, "mouseover",function() { showTooltip(this, info); });
+  GEvent.addListener(marker, "mouseout", function() { $("#tooltip").fadeOut(); });
+  GEvent.addListener(marker, "click",    function() { addYelpishNom(business); });
   map.addOverlay(marker);
+}
+
+function addYelpishNom(business) {
+  var formatPhone = function(num) {
+    if(num.length != 10) return '';
+    return '(' + num.slice(0,3) + ') ' + num.slice(3,6) + '-' + num.slice(6,10) + '<br/>';
+  }
+
+  var yelp_details = {
+    address: [business.address1, business.address2, business.address3].join(" "),
+    phone: formatPhone(business.phone),
+    url: business.url
+  }
+  var details = $.template('${address}<br/>${phone} (<a href="${url}">Reviews</a>)').apply(yelp_details);
+  addNom({
+    name: business.name,
+    details: details
+  })
 }
 
 function markupForTooltip(business) {
@@ -167,8 +174,9 @@ function iCanHazLocation(query) {
 
 function addNom(omnom) {
   var list = $("#sum_noms");
+
   if (list.children("li").length < MAX_OMNOMS) {
-    var template = $.template('<li><div class="name">${name}</div><div class="details">${details}</div><div class="remove">X</div></li>');
+    var template = $.template('<li><div class="name">${name}</div><div class="details">${details}</div><a href="#" class="remove">X</a></li>');
     var nom_item = template.apply(omnom);
     list.append(nom_item).children(':last').hide().blindDown();
     $("#sum_noms .remove").click(removeNom);
@@ -183,22 +191,39 @@ function removeNom() {
 }
 
 function createOmnom() {
+  var nomMapper = function()
+                  {
+                    var nom = {
+                                name:    $(this).children(".name").text(),
+                                details: $(this).children(".details").html()
+                              };
+                    return nom;
+                  };
+  
+  var pplMapper = function()
+                  {
+                    return this.value ? { email: this.value } : null
+                  };
+  
   $.ajax({
     type: "POST",
     url: "/omnom",
     cache: false,
-    data: {
-        authenticity_token: window._token,
-        pplz: $("#sum_pplz").serialize()
-    },
+    contentType: "application/json",
+    dataType: "json",
+    data: JSON.stringify({
+      omnom: {
+        pplz_attributes: $.makeArray($("#sum_pplz input:text[name=ppl_emailz]").map(pplMapper)),
+        noms_attributes: $.makeArray($("#sum_noms li").map(nomMapper)),
+        creator_email:   $("#creator_email").val()
+      }
+    }),
     error: function(XMLHttpRequest, textStatus, errorThrown)
     {
       try
       {
         var json = JSON.parse( XMLHttpRequest.responseText );
-        
         var first_error = json[0][1];
-
         $.flash.failure("Oh, no you didn't", first_error);
       }
       catch(e)
@@ -210,8 +235,7 @@ function createOmnom() {
     {
       try
       {
-        var json = JSON.parse( response );
-        top.location.href = json.redirect_to;
+        top.location.href = response.redirect_to;
       }
       catch(e)
       {

@@ -7,7 +7,6 @@
   <title>Omnominator</title>
   <script type="text/javascript" src="http://www.google.com/jsapi?key=<%= GOOGLE_API_KEY %>"></script>
   <%= javascript_include_tag :defaults, "plugins/jquery.template", "plugins/jquery.flash" %>
-  <%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
   <%= stylesheet_link_tag "screen", "flash" %>
 </head>
 <body>
