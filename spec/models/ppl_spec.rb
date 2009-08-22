@@ -45,7 +45,7 @@ describe Ppl do
 
 
   describe "verification" do
-    it "when the omnom owner performs a verification, that should verify the omnom" do
+    it "when the omnom owner performs a verification, that should activate the omnom" do
       omnom = Omnom.create!(:creator_email => "bill.clinton@example.com", :noms => [ Nom.new({ :name => "Jake's Meal Barn" }) ] )
 
       # Because of the way Rails builds associations, the object chain forward and reverse are not necessarily the same objects in memory
