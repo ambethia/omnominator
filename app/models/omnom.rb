@@ -21,18 +21,18 @@ class Omnom < ActiveRecord::Base
     creator.verification_code
   end
 
+  # Returns NOMs in decreasing order of the number of pplz, and pplz by email address
   def tally
-    # Collect the noms and their tallies
     results = {}
     noms.each do |nom|
-      results[nom] = pplz.select { |ppl| ppl.voted_for?(nom) }.size
+      results[nom] = pplz.select { |ppl| ppl.voted_for?(nom) }.sort_by { |ppl| ppl.email }
     end
 
     # Return them in highest to lowest tally
-    ordered_results = results.sort { |a,b| b[1] <=> a[1] }
+    ordered_results = results.sort { |a,b| b[1].size <=> a[1].size }
 
     # Make a more friendly result, an array of usable hashes
-    return ordered_results.map { |result| { :nom => result[0], :tally => result[1] } }
+    return ordered_results.map { |result| { :nom => result[0], :pplz => result[1] } }
   end
 
   private
