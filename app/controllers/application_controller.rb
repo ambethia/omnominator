@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
 
     if omnom.save
       render :status => 200,
-             :json => { :redirect_to => '/vote/1' } # + omnom.verification_code
+             :json => { :redirect_to => '/check_your_mail' } # + omnom.verification_code
     else
       render :status => 500,
              :json   => omnom.errors.to_json
