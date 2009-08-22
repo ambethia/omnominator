@@ -1,87 +1,87 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe Ballot do
+describe Omnom do
   before(:each) do
     @valid_attributes = {
       :creator_email => "sivle@example.com"
     }
     
-    @ballot = Ballot.new(@valid_attributes)
-    @ballot.candidates.build( :name => "Jake's Meal Barn")
+    @omnom = Omnom.new(@valid_attributes)
+    @omnom.noms.build( :name => "Jake's Meal Barn")
   end
 
   it "should create a new instance given valid attributes" do
-    @ballot.save!
+    @omnom.save!
   end
 
-  it "should have one or more candidates" do
-    ballot = Ballot.new(@valid_attributes)
+  it "should have one or more noms" do
+    omnom = Omnom.new(@valid_attributes)
 
-    ballot.should have(1).error_on(:candidates)
+    omnom.should have(1).error_on(:noms)
   end
 
-  it "should assign the creator as the first voter" do
-    ballot = Ballot.create(@valid_attributes)
+  it "should assign the creator as the first ppl" do
+    omnom = Omnom.create(@valid_attributes)
 
-    ballot.creator.email.should == ballot.creator_email
+    omnom.creator.email.should == omnom.creator_email
   end
 
-  it "should have one or more voters" do
+  it "should have one or more pplz" do
     # Make sure we fail to give a valid creator
-    ballot = Ballot.new(@valid_attributes.except(:creator_email))
+    omnom = Omnom.new(@valid_attributes.except(:creator_email))
 
-    ballot.should_not be_valid
-    ballot.should have(1).error_on(:voters)
+    omnom.should_not be_valid
+    omnom.should have(1).error_on(:pplz)
   end
 
   describe "mail notifications" do
-    it "should email the ballot creator when created" do
-      ballot = Ballot.new(@valid_attributes)
-      ballot.candidates.build(:name => "Jake's Meal Barn")
-      ballot.candidates.build(:name => "Sally's Salad Shack")
-      ballot.candidates.build(:name => "Bob's Burger Bonanza")
+    it "should email the omnom creator when created" do
+      omnom = Omnom.new(@valid_attributes)
+      omnom.noms.build(:name => "Jake's Meal Barn")
+      omnom.noms.build(:name => "Sally's Salad Shack")
+      omnom.noms.build(:name => "Bob's Burger Bonanza")
 
-      Mailer.should_receive(:deliver_vote_invitation).once.with(ballot, @valid_attributes[:creator_email])
+      Mailer.should_receive(:deliver_vote_invitation).once.with(omnom, @valid_attributes[:creator_email])
 
-      ballot.save
+      omnom.save
     end
     
-    it "should send emails to each of the voters, except the creator, when activated" do
-      ballot = Ballot.new(@valid_attributes)
-      ballot.candidates.build(:name => "Jake's Meal Barn")
-      ballot.candidates.build(:name => "Sally's Salad Shack")
-      ballot.candidates.build(:name => "Bob's Burger Bonanza")
+    it "should send emails to each of the pplz, except the creator, when activated" do
+      omnom = Omnom.new(@valid_attributes)
+      omnom.noms.build(:name => "Jake's Meal Barn")
+      omnom.noms.build(:name => "Sally's Salad Shack")
+      omnom.noms.build(:name => "Bob's Burger Bonanza")
 
-      voter_one   = ballot.voters.build(:email => "one")
-      voter_two   = ballot.voters.build(:email => "two")
-      voter_three = ballot.voters.build(:email => "three")
+      ppl_one   = omnom.pplz.build(:email => "one")
+      ppl_two   = omnom.pplz.build(:email => "two")
+      ppl_three = omnom.pplz.build(:email => "three")
 
-      Mailer.should_receive(:deliver_vote_invitation).with(ballot, voter_one.email)
-      Mailer.should_receive(:deliver_vote_invitation).with(ballot, voter_two.email)
-      Mailer.should_receive(:deliver_vote_invitation).with(ballot, voter_three.email)
+      Mailer.should_receive(:deliver_vote_invitation).with(omnom, ppl_one.email)
+      Mailer.should_receive(:deliver_vote_invitation).with(omnom, ppl_two.email)
+      Mailer.should_receive(:deliver_vote_invitation).with(omnom, ppl_three.email)
 
-      ballot.activate!
+      omnom.activate!
     end
   end
 
   describe "tallies" do
     before(:each) do
-      @ballot = Ballot.new(@valid_attributes)
-      @candidate_one   = @ballot.candidates.build(:name => "Jake's Meal Barn")
-      @candidate_two   = @ballot.candidates.build(:name => "Sally's Salad Shack")
-      @candidate_three = @ballot.candidates.build(:name => "Bob's Burger Bonanza")
+      @omnom = Omnom.new(@valid_attributes)
+      @nom_one   = @omnom.noms.build(:name => "Jake's Meal Barn")
+      @nom_two   = @omnom.noms.build(:name => "Sally's Salad Shack")
+      @nom_three = @omnom.noms.build(:name => "Bob's Burger Bonanza")
 
-      @voter_one   = @ballot.voters.build(:email => "one")
-      @voter_two   = @ballot.voters.build(:email => "two")
-      @voter_three = @ballot.voters.build(:email => "three")
+      @ppl_one   = @omnom.pplz.build(:email => "one")
+      @ppl_two   = @omnom.pplz.build(:email => "two")
+      @ppl_three = @omnom.pplz.build(:email => "three")
 
-      @voter_one.voted_candidate   = @candidate_one
-      @voter_two.voted_candidate   = @candidate_three
-      @voter_three.voted_candidate = @candidate_three
+      @ppl_one.voted_nom   = @nom_one
+      @ppl_two.voted_nom   = @nom_three
+      @ppl_three.voted_nom = @nom_three
     end
 
     it "should tell us how many people voted for each candiate in highst to lowest order" do
-      @ballot.tally.should ==  [ { :candidate => @candidate_three, :tally => 2 }, { :candidate => @candidate_one, :tally => 1}, { :candidate => @candidate_two, :tally => 0 } ]
+      @omnom.tally.should ==  [ { :nom => @nom_three, :tally => 2 }, { :nom => @nom_one, :tally => 1}, { :nom => @nom_two, :tally => 0 } ]
     end
   end
 
