@@ -86,8 +86,8 @@ describe Omnom do
       @ppl_three.voted_nom = @nom_three
     end
 
-    it "should tell us how many people voted for each candiate in highst to lowest order" do
-      @omnom.tally.should ==  [ { :nom => @nom_three, :tally => 2 }, { :nom => @nom_one, :tally => 1}, { :nom => @nom_two, :tally => 0 } ]
+    it "should tell us how many people voted for each candiate in highst to lowest order and people in alpha order by email" do
+      @omnom.tally.should ==  [ { :nom => @nom_three, :pplz => [ @ppl_three, @ppl_two ] }, { :nom => @nom_one, :pplz => [ @ppl_one ]}, { :nom => @nom_two, :pplz => [] } ]
     end
   end
 
