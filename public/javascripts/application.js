@@ -1,6 +1,6 @@
 google.load("maps", "2");
 
-var MAX_OMNOMS = 7;
+var MAX_OMNOMS = 5;
 
 function initializeMap() {  
   var zoom     = 3;
@@ -61,7 +61,7 @@ function createMapMarker(business, position, index) {
       url: business.url
     }
     var details = $.template('${address}<br/>${phone} (<a href="${url}">Reviews</a>)').apply(yelp_details);
-    addNewOmnom({
+    addNom({
       name: business.name,
       details: details
     })
@@ -160,20 +160,20 @@ function doGeoLocation(query) {
   });
 }
 
-function addNewOmnom(omnom) {
-  var list = $("#sum_omnoms");
+function addNom(omnom) {
+  var list = $("#sum_noms");
   if (list.children("li").length < MAX_OMNOMS) {
     var template = $.template('<li><div class="name">${name}</div><div class="details">${details}</div><div class="remove">X</div></li>');
     var nom_item = template.apply(omnom);
     list.append(nom_item).children(':last').hide().blindDown();
-    $("#sum_omnoms div.remove").click(removeOmnom);
+    $("#sum_noms div.remove").click(removeNom);
   } else {
     jQuery.flash.warn("My belly hurts", "Too much noms.")
   };
-  $("#new_omnom").reset();
+  $("#new_nom").reset();
 }
 
-function removeOmnom() {
+function removeNom() {
   $(this).parent().blindUp().remove();
 }
 
@@ -194,13 +194,13 @@ $(document).ready(function() {
   
   $("#tooltip").hide();
 
-  $("#new_omnom").submit(function() {
-    addNewOmnom({
-      name: this.new_omnom_name.value,
-      details: this.new_omnom_details.value
+  $("#new_nom").submit(function() {
+    addNom({
+      name: this.new_nom_name.value,
+      details: this.new_nom_details.value
     });
     return false;
   });
   
-  $("#sum_omnoms div.remove").click(removeOmnom);
+  $("#sum_noms div.remove").click(removeNom);
 });

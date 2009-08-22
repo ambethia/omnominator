@@ -1,7 +1,7 @@
 <div id="icanhaznoms">
   <div id="tooltip"></div>
   <div id="map_canvas"></div>
-  <form action="#" method="get" id="location_form">
+  <form action="#" met hod="get" id="location_form">
     <div>
       <label>
         Move Map (City, State or Zip)
@@ -13,10 +13,10 @@
   <%= genre_input_list %>
 </div>
 
-<div id="omnoms">
-  <h2>Omnoms.!</h2>
+<div id="omnom">
+  <h2>Omnoms!</h2>
 
-  <ul id="sum_omnoms">
+  <ul id="sum_noms">
     <li>
       <div class="name">Mema's Alaskan Tacos</div>
       <div class="details">123 Main St<br/>(813) 514-TACO (<a href="${url}">Reviews</a>)</div>
@@ -24,14 +24,26 @@
     </li>
   </ul>
 
-  <form action="#" method="get" id="new_omnom">
-    <p><input type="text" name="new_omnom_name" id="new_omnom_name"/></p>
-    <p><textarea name="new_omnom_details" id="new_omnom_details" rows="3" cols="24"></textarea></p>
+  <form action="#" method="get" id="new_nom">
+    <p><input type="text" name="new_nom_name" id="new_nom_name"/></p>
+    <p><textarea name="new_nom_details" id="new_nom_details" rows="3" cols="24"></textarea></p>
     <p><input type="submit" value="Add"/></p>
   </form>
 </div>
 
 <div id="ohaipplz">
   <h2>Pplz</h2>
+  
+  <form action="#" method="post" accept-charset="utf-8">
+    <p><input type="text" name="owner_email" id="owner_email"/></p>
+    <p><input type="text" name="ppl_emailz[]" id="ppl_email_1"/></p>
+    <p><input type="text" name="ppl_emailz[]" id="ppl_email_2"/></p>
+    <p><input type="text" name="ppl_emailz[]" id="ppl_email_3"/></p>
+    <p><input type="text" name="ppl_emailz[]" id="ppl_email_4"/></p>
+    <p><input type="text" name="ppl_emailz[]" id="ppl_email_5"/></p>
+    <p><input type="text" name="ppl_emailz[]" id="ppl_email_6"/></p>
+    <p><input type="submit" value="Nom!!"></p>
+  </form>
+  
 </div>
 

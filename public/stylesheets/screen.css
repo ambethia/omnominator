@@ -13,22 +13,20 @@
 }
 
 #icanhaznoms {
-  background-color: red;
   float: left;
   width: 320px;
 }
 
-#omnoms {
+#omnom {
   float: left;
   width: 320px;
 }
 
 #ohaipplz {
-  background-color: blue;
   float: left;
   width: 320px;
 }
 
-#sum_omnoms .name {
+#sum_noms .name {
   font-weight: bold;
 }
