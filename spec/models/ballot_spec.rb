@@ -14,18 +14,6 @@ describe Ballot do
     @ballot.save!
   end
 
-  describe "approval" do
-    it "new ballots should be unapproved" do
-      @ballot.should_not be_approved
-    end
-
-    it "ballots should be approvable" do
-      @ballot.approve!
-  
-      @ballot.should be_approved
-    end
-  end
-
   it "should have one or more candidates" do
     ballot = Ballot.new(@valid_attributes)
 
@@ -44,6 +32,36 @@ describe Ballot do
 
     ballot.should_not be_valid
     ballot.should have(1).error_on(:voters)
+  end
+
+  describe "mail notifications" do
+    it "should email the ballot creator when created" do
+      ballot = Ballot.new(@valid_attributes)
+      ballot.candidates.build(:name => "Jake's Meal Barn")
+      ballot.candidates.build(:name => "Sally's Salad Shack")
+      ballot.candidates.build(:name => "Bob's Burger Bonanza")
+
+      Mailer.should_receive(:deliver_vote_invitation).once.with(ballot, @valid_attributes[:creator_email])
+
+      ballot.save
+    end
+    
+    it "should send emails to each of the voters, except the creator, when activated" do
+      ballot = Ballot.new(@valid_attributes)
+      ballot.candidates.build(:name => "Jake's Meal Barn")
+      ballot.candidates.build(:name => "Sally's Salad Shack")
+      ballot.candidates.build(:name => "Bob's Burger Bonanza")
+
+      voter_one   = ballot.voters.build(:email => "one")
+      voter_two   = ballot.voters.build(:email => "two")
+      voter_three = ballot.voters.build(:email => "three")
+
+      Mailer.should_receive(:deliver_vote_invitation).with(ballot, voter_one.email)
+      Mailer.should_receive(:deliver_vote_invitation).with(ballot, voter_two.email)
+      Mailer.should_receive(:deliver_vote_invitation).with(ballot, voter_three.email)
+
+      ballot.activate!
+    end
   end
 
   describe "tallies" do
