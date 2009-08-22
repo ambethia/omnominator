@@ -1,1 +1,13 @@
 = Omnominator
+
+== Dependencies & APIs
+
+* jQuery
+  * jRails
+  * jQuery Templates
+* rspec
+  * rspec-rails
+* Yelp! API
+* Google JS API
+  * Maps
+* Guid
