@@ -3,10 +3,16 @@
 
 <html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Omnominator</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Omnominator</title>
+  <script type="text/javascript" src="http://www.google.com/jsapi?key=<%= GOOGLE_API_KEY %>"></script>
+  <%= javascript_include_tag :defaults %>
+  <%= stylesheet_link_tag "screen"  %>
 </head>
 <body>
+<h1>Omnomnomnom...</h1>
+
 <%= yield %>
+
 </body>
 </html>

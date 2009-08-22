@@ -1,0 +1,13 @@
+#map_canvas {
+  height: 400px;
+  width:  600px;
+}
+
+#tooltip {
+  position: absolute;
+  background-color: #900;
+  color: #fff;
+  border: 1px solid #000;
+  padding: 2px;
+  z-index: 5000;
+}
