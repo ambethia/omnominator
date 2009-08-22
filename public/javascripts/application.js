@@ -188,19 +188,37 @@ function createOmnom() {
     url: "/omnom",
     cache: false,
     data: {
-      authenticity_token: window._token
+        authenticity_token: window._token,
+        pplz: $("#sum_pplz").serialize()
     },
-    error: function(XMLHttpRequest) {
-      $.flash.failure("Oh, no you didn't", XMLHttpRequest.statusText);
+    error: function(XMLHttpRequest, textStatus, errorThrown)
+    {
+      try
+      {
+        var json = JSON.parse( XMLHttpRequest.responseText );
+        
+        var first_error = json[0][1];
+
+        $.flash.failure("Oh, no you didn't", first_error);
+      }
+      catch(e)
+      {
+      }
       return false;
     },
-    complete: function(XMLHttpRequest) {
-      // if(XMLHttpRequest.status.toString()[0]=='3') {
-        // top.location.href = XMLHttpRequest.getResponseHeader('Location');
-        // return true;
-      // }
+    success: function(response)
+    {
+      try
+      {
+        var json = JSON.parse( response );
+        top.location.href = json.redirect_to;
+      }
+      catch(e)
+      {
+      }
     }
    });
+
    return false;
 }
 

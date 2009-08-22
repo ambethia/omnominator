@@ -8,27 +8,33 @@ class ApplicationController < ActionController::Base
 
   # POST /
   def create_omnom
-    omnom_params = params[:omnom]
-
+    
     omnom = Omnom.new
-    omnom.creator_email = omnom_params[:owner_email]
 
-    omnom_params[:pplz].each do |ppl|
+    # JQuery is encoding this as a single escaped list, so we break it down...
+    pplz = CGI.parse(params[:pplz])
+
+    omnom.creator_email = pplz["owner_email"].first
+
+    pplz["ppl_emailz[]"].each do |ppl|
+      next if ppl.empty?
       omnom.pplz.build(:email => ppl)
     end
 
-    omnom_params[:noms].each do |nom|
-      omnom.noms.build(nom)
-    end
+    # omnom_params[:noms].each do |nom|
+    #   omnom.noms.build(nom)
+    # end
 
     if omnom.save
-      redirect_to '/vote/' + omnom.verification_code
+      render :status => 200,
+             :json => { :redirect_to => '/vote/1' } # + omnom.verification_code
     else
       render :status => 500,
-             :json => omnom.errors.to_json
+             :json   => omnom.errors.to_json
     end
-  rescue
-    render :status => 500
+  rescue Exception => e
+    render :status => 500,
+           :json => [["unknown", e.inspect]].to_json
   end
 
   def vote
