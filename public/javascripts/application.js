@@ -183,7 +183,25 @@ function removeNom() {
 }
 
 function createOmnom() {
-  return false;
+  $.ajax({
+    type: "POST",
+    url: "/omnom",
+    cache: false,
+    data: {
+      authenticity_token: window._token
+    },
+    error: function(XMLHttpRequest) {
+      $.flash.failure("Oh, no you didn't", XMLHttpRequest.statusText);
+      return false;
+    },
+    complete: function(XMLHttpRequest) {
+      // if(XMLHttpRequest.status.toString()[0]=='3') {
+        // top.location.href = XMLHttpRequest.getResponseHeader('Location');
+        // return true;
+      // }
+    }
+   });
+   return false;
 }
 
 $(document).ready(function() {

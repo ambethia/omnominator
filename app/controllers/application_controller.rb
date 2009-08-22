@@ -20,12 +20,19 @@ class ApplicationController < ActionController::Base
     omnom_params[:noms].each do |nom|
       omnom.noms.build(nom)
     end
-    
+
     if omnom.save
       redirect_to '/vote/' + omnom.verification_code
     else
       render :status => 500,
              :json => omnom.errors.to_json
     end
+  rescue
+    render :status => 500
   end
+
+  def vote
+    render :text => "woo"
+  end
+
 end

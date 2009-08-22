@@ -1,4 +1,4 @@
-#flash { position: fixed; top: 0px; left: 0px; width: 100%; z-index: 1000; background-color: #569; color: white; background-image: url('/static/img/btn.png'); background-position: bottom; border-bottom: 1px solid #555; }
+#flash { position: fixed; top: 0px; left: 0px; width: 100%; z-index: 1000; background-color: #569; color: white; background-image: url('/images/rails.png'); background-position: bottom; border-bottom: 1px solid #555; }
 #flash, #flash * { cursor: pointer; }
 #flash .yui-b { padding: 5px 0; }
 #flash .yui-b>* { font-size: 128%; }
