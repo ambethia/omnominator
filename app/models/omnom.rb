@@ -17,6 +17,10 @@ class Omnom < ActiveRecord::Base
     end
   end
 
+  def verification_code
+    creator.verification_code
+  end
+
   def tally
     # Collect the noms and their tallies
     results = {}

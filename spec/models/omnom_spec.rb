@@ -26,6 +26,12 @@ describe Omnom do
     omnom.creator.email.should == omnom.creator_email
   end
 
+  it "should use the creator's verification code as our verification code" do
+    omnom = Omnom.create(@valid_attributes)
+
+    omnom.creator.verification_code.should == omnom.verification_code
+  end
+
   it "should have one or more pplz" do
     # Make sure we fail to give a valid creator
     omnom = Omnom.new(@valid_attributes.except(:creator_email))
