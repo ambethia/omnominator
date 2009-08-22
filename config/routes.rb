@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options(:controller => "application") do |map|
     map.create_omnom '/omnom',                   :action => "create_omnom", :conditions => { :method => :post }
     map.vote         '/vote/:verification_code', :action => "vote"
+    map.check_your_mail '/check_your_mail',      :action => "check_your_mail"
   end
 
 end
