@@ -14,9 +14,15 @@ class Omnom < ActiveRecord::Base
   attr_accessor :creator_email
 
   def activate!
+    update_attribute :activated_at, Time.now
+
     pplz_to_email_on_activation.each do |ppl|
       Mailer.deliver_vote_invitation(self,ppl.email)
     end
+  end
+
+  def active?
+    activated_at
   end
 
   def verification_code

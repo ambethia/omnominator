@@ -91,4 +91,24 @@ describe Omnom do
     end
   end
 
+  describe "activation" do
+    before(:each) do
+      @omnom = Omnom.new(@valid_attributes)
+    end
+  
+    it "should not be active by default" do
+      @omnom.should_not be_active
+    end
+  
+    it "should be active when activated_at is set" do
+      @omnom.activated_at = 5.minutes.ago
+      @omnom.should be_active
+    end
+  
+    it "should activate" do
+      @omnom.activate!
+      @omnom.should be_active
+    end
+  end
+
 end

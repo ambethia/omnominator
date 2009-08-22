@@ -22,7 +22,8 @@ class ApplicationController < ActionController::Base
   end
 
   def vote
-    render :text => "woo"
+    @ppl   = Ppl.find_by_verification_code(params[:verification_code])
+    @omnom = @ppl.omnom
   end
 
 end
