@@ -6,6 +6,7 @@ set  :git_enable_submodules, true
 set  :deploy_via,            :remote_cache
 role :web,                   "omnom"
 role :app,                   "omnom"
+role :db,                    "omnom", :primary => true
 
 namespace :deploy do
   task :custom_symlinks do
