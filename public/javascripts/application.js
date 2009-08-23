@@ -70,7 +70,7 @@ function addYelpishNom(business) {
     phone: formatPhone(business.phone),
     url: business.url
   }
-  var details = $.template('${address}<br/>${phone} (<a href="${url}">Reviews</a>)').apply(yelp_details);
+  var details = $.template('${address}<br/>${phone} (<a href="${url}">Details</a>)').apply(yelp_details);
   addNom({
     name: business.name,
     details: details
