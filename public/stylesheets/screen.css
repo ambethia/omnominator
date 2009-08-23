@@ -31,27 +31,24 @@ body strong {
 
 #tell_me_how {
   font-size: .8em;
-  z-index: -1;
-  margin: -5px auto 10px;
-  padding: 15px 40px;
-  width: 880px;
+  z-index: 5;
+  margin: 0px 10px 10px 10px;
+  padding: 5px 5px;
   background-color: #F4F0E6;
-  -moz-column-count: 3;
-  -webkit-column-count: 2;
-  column-count: 2;
-  -moz-transform-origin: 10% 90%;
+/*  -moz-transform-origin: 10% 90%;
   -moz-transform: rotate(-1deg);
   -webkit-transform-origin: 30% 0;
   -webkit-transform: rotate(-1deg);
   transform-origin: 0 0;
   transform: rotate(-1deg);
+*/
   -moz-border-radius: 10px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
-  -moz-box-shadow: 1px 3px 20px #111;
+/*  -moz-box-shadow: 1px 3px 20px #111;
   -webkit-box-shadow: 1px 3px 20px #111;
   box-shadow: 1px 3px 20px #111;
-  display: none;
+*/
 }
 
 #map_canvas {
@@ -144,7 +141,8 @@ input.affirmative {
   box-shadow: 1px 3px 20px #111;
 }
 
-#omnom {
+
+#omnom, #empty_omnom {
   position: relative;
   background: transparent url(/images/omnombg.png) no-repeat -8px 0;
   float: left;
@@ -154,14 +152,21 @@ input.affirmative {
   background-color: #F4F0E6;
 }
 
-#omnom h2 {
+
+#omnom h2, #empty_omnom h2 {
   text-indent: -9000px;
 }
 
 #sum_noms {
   background: transparent url(/images/taco_icon.png) no-repeat 5px 0;
   padding-left: 63px;
+  padding-top: 15px;
   font-size: .7em;
+}
+
+#sum_noms li
+{
+  padding-top: 0px;
 }
 
 #sum_noms div.name {
@@ -180,6 +185,7 @@ a.remove {
 }
 
 #new_nom {
+  padding:60px 20px 0;
   position: absolute;
   bottom: 13px;
 }

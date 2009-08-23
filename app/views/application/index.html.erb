@@ -1,23 +1,4 @@
 <div id="oh_hai">
-<div id="tell_me_how">
-  <p>
-    You want to go eat with some friends, co-workers, minions, or Sally from Accounting.  You don't want to play Restaurant Mussolini, though (does everyone crave fried alligator toes?), so you need a quick way to let the group pick a place.
-  </p>
-  <p>
-    <strong>Enter the Omnominator:</strong>
-  </p>
-  <ul>
-    <li>You'll pick some restaurants, from our yelp-powered map (or add your faves).
-    </li>
-    <li>We'll e-mail the other folks, they'll make their choice, and you'll see the tally.
-    </li>
-    <li>You can then go have <strong>fried alligator toes</strong> with the reassurance that everyone else is as weird as you. Except maybe Sally.
-    </li>
-  </ul>
-  <p>
-    Hey, it's time to eat! Om nom nom nom nom nom nom....
-  </p>
-</div>
 <div id="icanhaznoms">
   <div id="tooltip"></div>
   <div id="yelp_message">&nbsp;</div>
@@ -34,22 +15,39 @@
   <%= genre_input_list %>
 </div>
 <div id="wrapper">
-  <div id="omnom">
+  <div id="empty_omnom">
     <h2>Omnoms!</h2>
-    <ul id="sum_noms">
-      <li>
-        <div class="name">Mema's Alaskan Tacos</div>
-        <div class="details">123 Main St<br/>(813) 514-TACO (<a href="http://alaskantacos.com">Reviews</a>)</div>
-        <a href="#" class="remove">X</a>
-      </li>
-    </ul>
-
-    <form action="#" method="get" id="new_nom">
-      <p><input type="text" name="new_nom_name" id="new_nom_name"/></p>
-      <p><textarea name="new_nom_details" id="new_nom_details" rows="3" cols="24"></textarea></p>
-      <p><input type="submit" value="Add" class="affirmative"/></p>
-    </form>
+    <div id="tell_me_how">
+      <p>
+        You want to go eat with some friends, co-workers or minions.  You don't want to play Restaurant Mussolini, though (does everyone crave fried alligator toes?)
+      </p>
+      <p>
+        <strong>Enter the Omnominator:</strong>
+      </p>
+      <ul>
+        <li>Pick restaurants from our yelp-powered map (or add your faves).
+        </li>
+        <li>We'll e-mail everyone and track the results.
+        </li>
+        <li>Go have <strong>fried alligator toes</strong> with the reassurance that everyone else is as weird as you.
+        </li>
+      </ul>
+      <p>
+        It's time to eat! Om nom nom nom...
+      </p>
+    </div>
   </div>
+
+  <div id="omnom">
+    <ul id="sum_noms">
+    </ul>
+  </div>
+
+  <form action="#" method="get" id="new_nom">
+    <p><input type="text" name="new_nom_name" id="new_nom_name"/></p>
+    <p><textarea name="new_nom_details" id="new_nom_details" rows="3" cols="24"></textarea></p>
+    <p><input type="submit" value="Add" class="affirmative"/></p>
+  </form>
 
   <div id="ohaipplz">
     <h2>Ur Email</h2>
