@@ -32,7 +32,7 @@ module ApplicationHelper
   end
 
   def gravatar_image(email)
-    image_tag(Gravatar.new(email, { :default => "/images/default_gravatar.png" }).url)
+    image_tag(Gravatar.new(email, { :default => "http://0.0.0.0:3000/images/default_gravatar.png" }).url)
   end
 
   def flash_script
@@ -40,5 +40,4 @@ module ApplicationHelper
       "<script> $(document).ready(function() { #{flash[:script]} }) </script>"
     end
   end
-
 end

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   helper :all
+  before_filter :adjust_format_for_iphone
 
   # GET /
   def index
@@ -25,13 +26,15 @@ class ApplicationController < ActionController::Base
   
   # Ppl#verify! is a no-op for anyone but the creator, <3 Gavin.
   def vote
-    @ppl = Ppl.find_by_verification_code(params[:verification_code])
+    @ppl = find_by_verification_code(params[:verification_code])
     @ppl.verify!
     flash[:script] = nil
-    unless @ppl.voted_nom
-      render :vote
-    else
-      render :results
+
+    page = @ppl.voted_nom ? :results : :vote
+
+    respond_to do |format|
+      format.html   { render page }
+      format.iphone { render page, :layout => false }
     end
   end
 
@@ -43,10 +46,21 @@ class ApplicationController < ActionController::Base
     redirect_to vote_path(@ppl.verification_code)
   rescue
     flash[:script] = "$.flash.error('FAIL', 'Where ya gonna nom?')"
-    render :vote
+    respond_to do |format|
+      format.html   { render :vote }
+      format.iphone { render :vote, :layout => false }
+    end
   end
 
   def check_your_mail
   end
 
+  private
+    def adjust_format_for_iphone
+      request.format = :iphone if iphone_request?
+    end
+
+    def iphone_request?
+      request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(Mobile\/.+Safari)/]
+    end
 end
