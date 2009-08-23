@@ -481,7 +481,7 @@ label.inside[for=creator_email]   {top:6px; left:30px;}
   position: relative;
 }
 
-.result, #results_page .lame_pplz {
+.result, #results_page .lame_pplz{
   font-size: .8em;
   z-index: 5;
   margin: 0px 10px 10px 10px;
@@ -500,6 +500,17 @@ label.inside[for=creator_email]   {top:6px; left:30px;}
   border-radius: 20px;
 }
 
+.votez .result {
+  width: 350px;
+}
+
+.votez {
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+  column-count: 2;
+  width: 750px;
+}
+
 .result .nom {
   width: 170px;
   float: left;
@@ -514,6 +525,35 @@ label.inside[for=creator_email]   {top:6px; left:30px;}
 .result .pplz{
   float: right;
   padding-right: 20px;
+}
+
+.pick {
+  float: right;
+  padding: 20px 20px;
+}
+
+#vote input {
+  font-size: 1.8em;
+  background: #C9D159;
+  padding: 0 .5em;
+  border: 3px solid #7F8212;
+  position: absolute;
+  bottom: -30px;
+  right: 60px;
+  cursor: pointer;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+}
+
+.pick img {
+  vertical-align: middle;
+}
+
+#vote input:active {
+  position: absolute;
+  bottom: -32px;
+  right: 60px;
 }
 
 .result .pplz p {
