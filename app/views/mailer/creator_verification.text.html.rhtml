@@ -1,6 +1,6 @@
 <div id="content">
   <h3>Omnomnomnom</h3>
   <p>You, or someone who stole your email address, started an Omnominator for a group meal.</p>
-  <p>If that was you, go here to register your choice and activate the Omninator for the others: <%= @url %>.</p>
+  <p>If that was you, go here to register your choice and activate the Omninator for the others: <a href="<%= vote_url(@ppl.verification_code) %>"><%= vote_url(@ppl.verification_code) %></a>.</p>
   <p>If it wasn't you, you might consider changing your email password.</p>
 </div>

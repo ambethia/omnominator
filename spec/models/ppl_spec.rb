@@ -45,8 +45,10 @@ describe Ppl do
 
 
   describe "verification" do
-    it "when the omnom owner performs a verification, that should activate the omnom" do
-      omnom = Omnom.create!(:creator_email => "bill.clinton@example.com", :noms => [ Nom.new({ :name => "Jake's Meal Barn" }) ] )
+    it "when the omnom owner performs a verification, that should verify the omnom" do
+      omnom = Omnom.new(:creator_email => "bill.clinton@example.com", :noms => [ Nom.new({ :name => "Jake's Meal Barn" }) ] )
+      omnom.stub!(:send_creator_email)
+      omnom.save
 
       # Because of the way Rails builds associations, the object chain forward and reverse are not necessarily the same objects in memory
       # Yeah, this looks weird, but its OK.
@@ -58,7 +60,9 @@ describe Ppl do
     end
 
     it "when a non omnom owner performs a verification, that should not touch the omnom" do
-      omnom = Omnom.create!(:creator_email => "bill.clinton@example.com", :noms => [ Nom.new({ :name => "Jake's Meal Barn" }) ] )
+      omnom = Omnom.new(:creator_email => "bill.clinton@example.com", :noms => [ Nom.new({ :name => "Jake's Meal Barn" }) ] )
+      omnom.stub!(:send_creator_email)
+      omnom.save
 
       non_creator = omnom.pplz.build(:email => "hillary.clinton@example.com")
 

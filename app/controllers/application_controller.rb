@@ -17,12 +17,27 @@ class ApplicationController < ActionController::Base
              :json   => omnom.errors.to_json
     end
   rescue Exception => e
+    logger.error(e)
+
     render :status => 500,
            :json => [["unknown", e.inspect]].to_json
   end
 
   def vote
-    render :text => "woo"
+    @ppl   = Ppl.find_by_verification_code(params[:verification_code])
+    @omnom = @ppl.omnom
+
+    # no-op for anyone but the creator, <3 Gavin.
+    @ppl.verify!
+
+    unless @ppl.voted_nom
+      render :vote
+    else
+      render :results
+    end
+  end
+
+  def check_your_mail
   end
 
 end

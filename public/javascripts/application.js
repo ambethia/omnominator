@@ -247,34 +247,36 @@ function createOmnom() {
 }
 
 $(document).ready(function() {
-  initializeMap();
-  initializeMarkers();
+  if ($("#oh_hai").length > 0) {
+    initializeMap();
+    initializeMarkers();
 
-  geocoder = new GClientGeocoder();
+    geocoder = new GClientGeocoder();
 
-  $("#location_form").submit(function() {
-    iCanHazLocation($("#location_text").get(0).value);
-    return false;
-  });
-  
-  $("#categories li input").change(function() {
-    yelp();
-  });
-  
-  $("#tooltip").hide();
-
-  $("#new_nom").submit(function() {
-    addNom({
-      name: this.new_nom_name.value,
-      details: this.new_nom_details.value
+    $("#location_form").submit(function() {
+      iCanHazLocation($("#location_text").get(0).value);
+      return false;
     });
-    return false;
-  });
 
-  $("#sum_pplz").submit(function() {
-    createOmnom();
-    return false;
-  });
+    $("#categories li input").change(function() {
+      yelp();
+    });
 
-  $("#sum_noms .remove").click(removeNom);
+    $("#tooltip").hide();
+
+    $("#new_nom").submit(function() {
+      addNom({
+        name: this.new_nom_name.value,
+        details: this.new_nom_details.value
+      });
+      return false;
+    });
+
+    $("#sum_pplz").submit(function() {
+      createOmnom();
+      return false;
+    });
+
+    $("#sum_noms .remove").click(removeNom);
+  }
 });
