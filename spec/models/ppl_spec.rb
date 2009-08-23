@@ -49,6 +49,7 @@ describe Ppl do
       omnom = Omnom.new(:creator_email => "bill.clinton@example.com", :noms => [ Nom.new({ :name => "Jake's Meal Barn" }) ] )
       omnom.stub!(:send_creator_email)
       omnom.save
+
       # Because of the way Rails builds associations, the object chain forward and reverse are not necessarily the same objects in memory
       # Yeah, this looks weird, but its OK.
       omnom.pplz.each { |ppl| ppl.omnom = omnom }
