@@ -349,7 +349,25 @@ function createOmnom() {
    return false;
 }
 
+function scewie6()
+{
+  var IE6 = (navigator.userAgent.indexOf("MSIE 6")>=0) ? true : false;
+  if(IE6)
+  {
+    $(function()
+    {
+      $("#oh_hai").hide();
+      $("#header").hide();
+      $("body").css( { "background" : "none"} );
+      $("<div id='screwie6'><img src='/images/no-ie6.png'/></div>").appendTo('body');
+      $("#screwie6").css({"width":"213px","margin":"0 auto"});
+    });		
+  }  
+}
+
 $(document).ready(function() {
+  scewie6();
+
   if ($("#oh_hai").length > 0) {
     initializeGoogleMaps();
 
@@ -396,6 +414,8 @@ $(document).ready(function() {
 
     $("#empty_omnom").show();    
     $("#omnom").hide();
+
+    $("label.inside").inFieldLabels();
 
     $("#sum_noms .remove").click(removeNom);
   }

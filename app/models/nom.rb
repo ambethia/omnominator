@@ -9,6 +9,6 @@ class Nom < ActiveRecord::Base
   private
     # Please, no crazy HTML allowed inside our details field.
     def sanitize_details
-      self.details = ActionController::Base.helpers.sanitize(details, { :attributes => ALLOWED_HTML_TAGS_IN_DETAILS } )
+      self.details = ActionController::Base.helpers.sanitize(details, { :tags => ALLOWED_HTML_TAGS_IN_DETAILS } )
     end
 end

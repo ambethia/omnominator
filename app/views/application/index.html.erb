@@ -32,7 +32,7 @@
         </li>
         <li>We'll e-mail everyone and track the results.
         </li>
-        <li>Go have <strong onclick="$.flash.warn('Fried Alligator Toes', 'Fried Alligator Toes: 30 minutes, serves 6; 1 alligator; 42 onions, diced; 14 gallons olive or canola oil; 1 loaf cuban bread; 1 small dog. Distribute the oil among 4 large cast-iron pots, at least 12 quarts in size. Bring to high heat. Season oil with onions. Stand alligator so that each foot is in a different pot (you may need to measure the alligator in advance, and set up the pots to fit). If the alligator is still alive, deploy the small dog as distraction. Cook the toes for 10 minutes or until golden brown. Remove the gator from the pots, and surround toes with flat white breadSeason with steak sauce, catsup, or vinegar Proceed with caution');">fried alligator toes</strong> with the reassurance that everyone else is as weird as you.
+        <li>Go have <strong onclick="$.flash.info('Fried Alligator Toes', 'Fried Alligator Toes: 30 minutes, serves 6; 1 alligator; 42 onions, diced; 14 gallons olive or canola oil; 1 loaf cuban bread; 1 small dog. Distribute the oil among 4 large cast-iron pots, at least 12 quarts in size. Bring to high heat. Season oil with onions. Stand alligator so that each foot is in a different pot (you may need to measure the alligator in advance, and set up the pots to fit). If the alligator is still alive, deploy the small dog as distraction. Cook the toes for 10 minutes or until golden brown. Remove the gator from the pots, and surround toes with flat white breadSeason with steak sauce, catsup, or vinegar Proceed with caution');">fried alligator toes</strong> with the reassurance that everyone else is as weird as you.
         </li>
       </ul>
       <p>
@@ -47,8 +47,14 @@
   </div>
 
   <form action="#" method="get" id="new_nom">
-    <p><input type="text" name="new_nom_name" id="new_nom_name"/></p>
-    <p><textarea name="new_nom_details" id="new_nom_details" rows="3" cols="24"></textarea></p>
+    <p>
+      <label for="new_nom_name" class="inside">Where 2 nom?</label>
+      <input type="text" name="new_nom_name" id="new_nom_name"/>
+    </p>
+    <p>
+      <label for="new_nom_details" class="inside">Sum details...</label>
+      <textarea name="new_nom_details" id="new_nom_details" rows="3" cols="24"></textarea>
+    </p>
     <p><input type="submit" value="Add" class="affirmative"/></p>
   </form>
 
@@ -56,12 +62,16 @@
     <h2>Ur Email</h2>
     <h2>Other Pplz Coming?</h2>
     <form action="#" method="get" id="sum_pplz">
-      <p><input type="text" id="creator_email" /></p>
+      <p>
+        <label for="creator_email" class="inside">you@example.com</label>
+        <input type="text" id="creator_email" name="creator_email" />
+      </p>
       <p><input type="text" name="ppl_emailz" /></p>
       <p><input type="text" name="ppl_emailz" /></p>
       <p><input type="text" name="ppl_emailz" /></p>
       <p><input type="text" name="ppl_emailz" /></p>
       <p><input type="text" name="ppl_emailz" /></p>
+      
       <p id="shiro_neko"><input type="submit" value="Nom!!" id="nom"></p>
     </form>
   </div>

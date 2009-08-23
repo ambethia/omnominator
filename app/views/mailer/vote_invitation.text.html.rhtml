@@ -1,17 +1,17 @@
 <table style="background: #534741 url(http://omnominator.com/images/background.png) repeat fixed left top; width: 100%">
+  <tr style="height: 30px"><td></td><td></td><td></td></tr>
   <tr>
     <td width="20%">&nbsp;</td>
-    <td><h3>Hungry?</h3></td>
+    <td><%= image_tag('http://omnominator.com/images/title_for_email.png', :alt => 'OmNominator') %></td>
     <td width="20%">&nbsp;</td>
   </tr>
   <tr>
     <td width="20%">&nbsp;</td>
-    <td style="float: left; width: 340px; background-color: #F4F0E6; margin: 0 20px 0 0; padding: 20px 10px; border-radius: 3px; box-shadow: 1px 3px 20px #111;"><%= @creator %> wants to go eat with you, or claims to.<br /><br />
+    <td style="float: left; width: 340px; background-color: #F4F0E6; margin: 0 20px 0 0; padding: 20px 10px; border-radius: 3px; box-shadow: 1px 3px 20px #111;">Hungry? <%= @creator %> wants to go eat with you, or claims to.<br /><br />
     They've asked you to help pick a place to go.  If you don't want to end up eating fried alligator toes with extra-special sauce, you might want to vote.<br /><br />
     To do so, go here: <%= vote_url(@ppl.verification_code) %>.<br />
     </td>
  <td width="20%">&nbsp;</td>
  </tr>
- <tr></tr>
- <tr></tr>
+  <tr style="height: 30px"><td></td><td></td><td></td></tr>
 </table>
