@@ -150,7 +150,7 @@ input.affirmative {
   float: left;
   padding: 60px 20px 0;
   width: 240px;
-  height: 430px;
+  height: 435px;
   background-color: #F4F0E6;
 }
 
@@ -162,6 +162,10 @@ input.affirmative {
   background: transparent url(/images/taco_icon.png) no-repeat 5px 0;
   padding-left: 63px;
   font-size: .7em;
+}
+
+#sum_noms div.name {
+  font-family: "Layne Lighthouse Bold",Georgia, serif;
 }
 
 a.remove {
