@@ -9,5 +9,3 @@ config.action_mailer.default_url_options             = { :host => "test.host" }
 
 config.gem "rspec",       :lib => false, :version => ">= 1.2.0"
 config.gem "rspec-rails", :lib => false, :version => ">= 1.2.0"
-
-GOOGLE_API_KEY = "X"
