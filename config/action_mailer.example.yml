@@ -1,0 +1,7 @@
+:enable_starttls_auto: true
+:address: smtp.gmail.com
+:port: 587
+:domain: omnominator.com
+:authentication: :plain
+:user_name: no-reply
+:password: 

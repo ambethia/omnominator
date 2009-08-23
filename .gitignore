@@ -5,3 +5,5 @@ db/*.sqlite3*
 doc/app/*
 log/*.log
 tmp/**/*
+
+config/action_mailer.yml

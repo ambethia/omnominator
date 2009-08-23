@@ -1,16 +1,66 @@
-#flash { position: fixed; top: 0px; left: 0px; width: 100%; z-index: 1000; background-color: #569; color: white; background-image: url('/images/rails.png'); background-position: bottom; border-bottom: 1px solid #555; }
-#flash, #flash * { cursor: pointer; }
-#flash .yui-b { padding: 5px 0; }
-#flash .yui-b>* { font-size: 128%; }
-#flash label { display: block; text-align: right; font-weight: bold; text-transform: capitalize; }
-#flash label:after { content: ':'; }
+/* Size & Shape */
 
-#flash.subtle { background-color: #444; color: white; }
-#flash.subtle:hover { background-color: #222; }
-#flash.warning { background-color: #ff0; color: black; }
-#flash.warning:hover { background-color: #ff8; }
-#flash.success { background-color: #595; }
-#flash.success:hover { background-color: #7b7; }
-#flash.failure, #flash.error { background-color: #800; }
-#flash.failure:hover, #flash.error:hover { background-color: #a00; }
-#flash.subtle, #flash.success, #flash.failure, #flash.error { text-shadow: black 2px 2px 2px; }
+#flash {
+  position: fixed;
+  z-index: 1000;
+  text-align: center;
+  width: 340px;
+  top: 33%;
+  left: 50%;
+  margin-left: -170px;
+  filter:alpha(opacity=90);
+  -moz-opacity:0.9;
+  -khtml-opacity: 0.9;
+  opacity: 0.9;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  border-radius: 12px;
+  -moz-box-shadow: 1px 12px 20px #111;
+  -webkit-box-shadow: 1px 12px 20px #111;
+  box-shadow: 1px 12px 20px #111;
+}
+
+#flash, #flash * {
+  cursor: pointer;
+}
+#flash .yui-b {
+  padding: 5px 0;
+}
+#flash .yui-b>* {
+  font-size: 128%;
+}
+#flash label {
+  display: block;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+/* Colors */
+
+/* success info information warn warning fail failure error subtle */
+
+#flash {
+  background-color: #B5CFF2;
+  color: #534741;  
+}
+
+#flash:hover {
+  background-color: #97ACC9;
+}
+
+#flash.success {
+  background-color: #C9D159;
+}
+
+#flash.success:hover {
+  background-color: #AEB54D;
+}
+
+#flash.failure, #flash.error, #flash.fail, #flash.warning, #flash.warn {
+  background-color: #AF414C;
+  color: #FFFFFF;
+}
+
+#flash.failure:hover, #flash.error:hover, #flash.fail:hover, #flash.warning:hover, #flash.warn:hover {
+  background-color: #933841;
+}

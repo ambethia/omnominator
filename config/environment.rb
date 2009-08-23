@@ -8,3 +8,5 @@ Rails::Initializer.run do |config|
   config.gem 'guid'
   config.gem 'gravatar'
 end
+
+ActionMailer::Base.smtp_settings = YAML::load(File.read(File.join(Rails.root, 'config', 'action_mailer.yml')))
