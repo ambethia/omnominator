@@ -1,6 +1,16 @@
-<div id="content">
-  <h3>Omnomnomnom</h3>
-  <p>You, or someone who stole your email address, started an Omnominator for a group meal.</p>
-  <p>If that was you, go here to register your choice and activate the Omninator for the others: <a href="<%= vote_url(@ppl.verification_code) %>"><%= vote_url(@ppl.verification_code) %></a>.</p>
-  <p>If it wasn't you, you might consider changing your email password.</p>
-</div>
+<table style="background: #534741 url(http://omnominator.com/images/background.png) repeat fixed left top; width: 100%">
+  <tr>
+    <td width="20%">&nbsp;</td>
+    <td><h3>Omnomnomnom</h3></td>
+    <td width="20%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20%">&nbsp;</td>
+    <td style="float: left; width: 340px; background-color: #F4F0E6; margin: 0 20px 0 0; padding: 20px 10px; border-radius: 3px; box-shadow: 1px 3px 20px #111;">You, or someone who stole your email address, started an Omnominator for a group meal.<br /><br />
+  If that was you, go here to register your choice and activate the Omninator for the others: <a href="<%= vote_url(@ppl.verification_code) %>"><%= vote_url(@ppl.verification_code) %></a>.<br /><br />
+ If it wasn't you, you might consider changing your email password.</td>
+ <td width="20%">&nbsp;</td>
+ </tr>
+ <tr></tr>
+ <tr></tr>
+</table>
