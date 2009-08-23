@@ -10,6 +10,7 @@ role :app,                   "omnom"
 namespace :deploy do
   task :custom_symlinks do
     run "ln -nfs #{shared_path}/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/action_mailer.yml #{release_path}/config/action_mailer.yml"
   end
   
   desc "Restart Passenger"
@@ -26,4 +27,3 @@ end
 before "deploy:migrate", "deploy:custom_symlinks"
 after  "deploy:symlink", "deploy:custom_symlinks"
 after  "deploy",         "deploy:cleanup"
-
