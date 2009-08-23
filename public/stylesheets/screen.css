@@ -606,7 +606,6 @@ label.inside[for=creator_email]   {top:6px; left:30px;}
 }
 
 #i_have_envelopes_plz {
-  z-index: 8;
   position: absolute;
   top: -15px;
   left: -30px;
