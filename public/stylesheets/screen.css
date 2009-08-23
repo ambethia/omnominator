@@ -504,10 +504,11 @@ label.inside[for=creator_email]   {top:6px; left:30px;}
   width: 350px;
 }
 
+#hidden {
+  display: none;
+}
+
 .votez {
-  -moz-column-count: 2;
-  -webkit-column-count: 2;
-  column-count: 2;
   width: 750px;
 }
 
@@ -538,8 +539,8 @@ label.inside[for=creator_email]   {top:6px; left:30px;}
   padding: 0 .5em;
   border: 3px solid #7F8212;
   position: absolute;
-  bottom: -30px;
-  right: 60px;
+  bottom: -130px;
+  left: 280px;
   cursor: pointer;
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
