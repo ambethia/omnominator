@@ -1,5 +1,5 @@
 <div id="results_page">
-  <h2 id="i_have_envelopes_plz">Currant Results!</h2>
+  <h2 id="i_have_envelopes_plz"><%= results_status(@ppl.omnom) %></h2>
     <ul id="results_list">
       <%- lame_pplz = @ppl.omnom.pplz %>
       <%- for nom_tally in @ppl.omnom.tally do -%>
