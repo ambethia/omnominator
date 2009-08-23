@@ -79,10 +79,10 @@ function addYelpishNom(business) {
 }
 
 function markupForTooltip(business) {
-  var text = '';
-  text += business.name;
-  // add more stuff here
-  return text;
+  var business_address = [business.address1, business.address2, business.address3].join(" ");
+  var html = '<p class="name">' + business.name + '</p><p class="address">' +  business_address + '</p>';
+
+  return html;
 }
 
 function showTooltip(marker, infoHTML) {
@@ -100,7 +100,8 @@ function showTooltip(marker, infoHTML) {
     left = (pinPx.x + mapPx.left) - (icon.iconAnchor.x + tooltip.width());
     if (left < 10) { left = 10 }; // keep it on the page
   }
-  tooltip.css({ top: top, left: left }).fadeIn();
+  /* Ensure the tooltip doesn't obscure the pin */
+  tooltip.css({ top: top - 22, left: left }).fadeIn();
 }
 
 function getBusinessIcon(business) {
@@ -111,6 +112,12 @@ function getBusinessIcon(business) {
       return false;
   });
   return icon || defaultIcon;
+}
+
+function map_message(message,klass)
+{
+  $("#map_message p").text(message);
+  $("#map_message").get(0).className = klass;
 }
 
 function yelp() {
@@ -127,7 +134,7 @@ function yelp() {
               "&ywsid="    + "kIXgBO4ryiAN3oPxskwNmg";
     $.getJSON(URI, function(data){
       if(data.message.text == "OK") {
-        $("#yelp_message p").text("Om nom nom nom...")
+        map_message("Om nom nom nom...", "happy");
         map.clearOverlays();
         if (data.businesses.length > 0) {
           for(var i = 0; i < data.businesses.length; i++) {
@@ -136,15 +143,15 @@ function yelp() {
             createMapMarker(business, position, i);
           }
         } else {
-          $("#yelp_message p").text("No noms... qq.")
+          map_message("No noms... qq.", "mad");
         }
       }
       else {
         var message = data.message.text;
         if (message == "Area too large") {
-          $("#yelp_message p").text("Zoom moar!");
+          map_message("Zoom moar!", "content");
         } else {
-          $("#yelp_message p").text("Error: " + message);
+          map_message("Error: " + message, "mad");
         }
       }
     });
@@ -173,7 +180,7 @@ function categoriesFilterString() {
 function iCanHazLocation(query) {
   geocoder.getLatLng(query, function(point) {
     if (!point) {
-      $.flash.failure("A Google says wut?", "Can't geolocate: " + query);
+      map_message("A Google says wut?", "mad");
     } else {
       map.setCenter(point, 12);
     }
@@ -223,8 +230,8 @@ function addNom(omnom) {
       $.flash.warn("Already nomz there", "dupliCAT");
       return;
     }
-    var template = $.template('<li><div class="name">${name}</div><div class="details">${details}</div><a href="#" class="remove">X</a></li>');
-    var nom_item = template.apply(omnom);
+    var nom_template  = $.template('<li><div class="name">${name}</div><div class="details">${details}</div><a href="#" class="remove">X</a></li>');
+    var nom_item      = nom_template.apply(omnom);
     list.append(nom_item).children(':last').hide().blindDown();
     $("#sum_noms .remove").click(removeNom);
   } else {
