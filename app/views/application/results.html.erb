@@ -23,7 +23,7 @@
   <%- end -%>
 
 </ul>
-
+<% unless lame_pplz.empty? %>
 <div class="lame_pplz">
   <h3>Lame pplz who no haz voted yet</h3>
   <% lame_pplz.each do |ppl| %>
@@ -31,6 +31,6 @@
     <p><%= ppl.name %></p>
   <% end %>      
 </div>
-
+<% end %>
 </div>
 </div>
