@@ -79,10 +79,10 @@ function addYelpishNom(business) {
 }
 
 function markupForTooltip(business) {
-  var text = '';
-  text += business.name;
-  // add more stuff here
-  return text;
+  var business_address = [business.address1, business.address2, business.address3].join(" ");
+  var html = '<p class="name">' + business.name + '</p><p class="address">' +  business_address + '</p>';
+
+  return html;
 }
 
 function showTooltip(marker, infoHTML) {
@@ -100,7 +100,8 @@ function showTooltip(marker, infoHTML) {
     left = (pinPx.x + mapPx.left) - (icon.iconAnchor.x + tooltip.width());
     if (left < 10) { left = 10 }; // keep it on the page
   }
-  tooltip.css({ top: top, left: left }).fadeIn();
+  /* Ensure the tooltip doesn't obscure the pin */
+  tooltip.css({ top: top - 22, left: left }).fadeIn();
 }
 
 function getBusinessIcon(business) {
@@ -229,8 +230,8 @@ function addNom(omnom) {
       $.flash.warn("Already nomz there", "dupliCAT");
       return;
     }
-    var template = $.template('<li><div class="name">${name}</div><div class="details">${details}</div><a href="#" class="remove">X</a></li>');
-    var nom_item = template.apply(omnom);
+    var nom_template  = $.template('<li><div class="name">${name}</div><div class="details">${details}</div><a href="#" class="remove">X</a></li>');
+    var nom_item      = nom_template.apply(omnom);
     list.append(nom_item).children(':last').hide().blindDown();
     $("#sum_noms .remove").click(removeNom);
   } else {
