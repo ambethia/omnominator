@@ -113,6 +113,12 @@ function getBusinessIcon(business) {
   return icon || defaultIcon;
 }
 
+function map_message(message,klass)
+{
+  $("#map_message p").text(message);
+  $("#map_message").get(0).className = klass;
+}
+
 function yelp() {
   try
   {
@@ -127,7 +133,7 @@ function yelp() {
               "&ywsid="    + "kIXgBO4ryiAN3oPxskwNmg";
     $.getJSON(URI, function(data){
       if(data.message.text == "OK") {
-        $("#yelp_message p").text("Om nom nom nom...")
+        map_message("Om nom nom nom...", "happy");
         map.clearOverlays();
         if (data.businesses.length > 0) {
           for(var i = 0; i < data.businesses.length; i++) {
@@ -136,15 +142,15 @@ function yelp() {
             createMapMarker(business, position, i);
           }
         } else {
-          $("#yelp_message p").text("No noms... qq.")
+          map_message("No noms... qq.", "mad");
         }
       }
       else {
         var message = data.message.text;
         if (message == "Area too large") {
-          $("#yelp_message p").text("Zoom moar!");
+          map_message("Zoom moar!", "content");
         } else {
-          $("#yelp_message p").text("Error: " + message);
+          map_message("Error: " + message, "mad");
         }
       }
     });
@@ -173,7 +179,7 @@ function categoriesFilterString() {
 function iCanHazLocation(query) {
   geocoder.getLatLng(query, function(point) {
     if (!point) {
-      $.flash.failure("A Google says wut?", "Can't geolocate: " + query);
+      map_message("A Google says wut?", "mad");
     } else {
       map.setCenter(point, 12);
     }
