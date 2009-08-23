@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   helper :all
-  before_filter :adjust_format_for_iphone
 
   # GET /
   def index
@@ -36,10 +35,7 @@ class ApplicationController < ActionController::Base
 
     page = @ppl.voted_nom ? :results : :vote
 
-    respond_to do |format|
-      format.html   { render page }
-      format.iphone { render page, :layout => false }
-    end
+    render page
   end
 
   def chad
@@ -50,21 +46,9 @@ class ApplicationController < ActionController::Base
     redirect_to vote_path(@ppl.verification_code)
   rescue
     flash[:script] = "$.flash.error('FAIL', 'Where ya gonna nom?')"
-    respond_to do |format|
-      format.html   { render :vote }
-      format.iphone { render :vote, :layout => false }
-    end
+    render :vote
   end
 
   def check_your_mail
   end
-
-  private
-    def adjust_format_for_iphone
-      request.format = :iphone if iphone_request?
-    end
-
-    def iphone_request?
-      request.env["HTTP_USER_AGENT"] && request.env["HTTP_USER_AGENT"][/(Mobile\/.+Safari)/]
-    end
 end
