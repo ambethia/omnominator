@@ -546,6 +546,10 @@ label.inside[for=creator_email]   {top:6px; left:30px;}
   border-radius: 20px;
 }
 
+.pick img {
+  vertical-align: middle;
+}
+
 #vote input:active {
   position: absolute;
   bottom: -32px;

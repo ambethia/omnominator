@@ -5,7 +5,7 @@
   <ul class="votez">
     <%- for nom in @ppl.omnom.noms do -%>
     <li class="result">
-      <div class="pick"><%= radio_button_tag "nom_id", nom.id %></div>
+      <div class="pick"><img src="/images/arrow.png" width="59" height="43" alt="Arrow"><%= radio_button_tag "nom_id", nom.id %></div>
       <div class="nom"><div class="name"><%=h nom.name %></div>
       <div class="details"><%= nom.details %></div></div>
       <br>
