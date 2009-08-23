@@ -114,38 +114,44 @@ function getBusinessIcon(business) {
 }
 
 function yelp() {
-  var bounds = map.getBounds();
-  var URI = "http://api.yelp.com/business_review_search?" +
-            "&num_biz_requested=10&callback=?" +
-            "&category=" + categoriesFilterString() +
-            "&tl_lat="   + bounds.getSouthWest().lat() +
-            "&tl_long="  + bounds.getSouthWest().lng() + 
-            "&br_lat="   + bounds.getNorthEast().lat() + 
-            "&br_long="  + bounds.getNorthEast().lng() +
-            "&ywsid="    + "kIXgBO4ryiAN3oPxskwNmg";
-  $.getJSON(URI, function(data){
-    if(data.message.text == "OK") {
-      $("#yelp_message p").text("Om nom nom nom...")
-      map.clearOverlays();
-      if (data.businesses.length > 0) {
-        for(var i = 0; i < data.businesses.length; i++) {
-          var business = data.businesses[i];
-          var position = new GLatLng(business.latitude, business.longitude);
-          createMapMarker(business, position, i);
+  try
+  {
+    var bounds = map.getBounds();
+    var URI = "http://api.yelp.com/business_review_search?" +
+              "&num_biz_requested=10&callback=?" +
+              "&category=" + categoriesFilterString() +
+              "&tl_lat="   + bounds.getSouthWest().lat() +
+              "&tl_long="  + bounds.getSouthWest().lng() + 
+              "&br_lat="   + bounds.getNorthEast().lat() + 
+              "&br_long="  + bounds.getNorthEast().lng() +
+              "&ywsid="    + "kIXgBO4ryiAN3oPxskwNmg";
+    $.getJSON(URI, function(data){
+      if(data.message.text == "OK") {
+        $("#yelp_message p").text("Om nom nom nom...")
+        map.clearOverlays();
+        if (data.businesses.length > 0) {
+          for(var i = 0; i < data.businesses.length; i++) {
+            var business = data.businesses[i];
+            var position = new GLatLng(business.latitude, business.longitude);
+            createMapMarker(business, position, i);
+          }
+        } else {
+          $("#yelp_message p").text("No noms... qq.")
         }
-      } else {
-        $("#yelp_message p").text("No noms... qq.")
       }
-    }
-    else {
-      var message = data.message.text;
-      if (message == "Area too large") {
-        $("#yelp_message p").text("Zoom moar!");
-      } else {
-        $("#yelp_message p").text("Error: " + message);
+      else {
+        var message = data.message.text;
+        if (message == "Area too large") {
+          $("#yelp_message p").text("Zoom moar!");
+        } else {
+          $("#yelp_message p").text("Error: " + message);
+        }
       }
-    }
-  });
+    });
+  }
+  catch(e)
+  {
+  }
 }
 
 function categoriesFilterString() {

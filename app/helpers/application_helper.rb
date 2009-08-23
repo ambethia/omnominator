@@ -40,4 +40,13 @@ module ApplicationHelper
       "<script> $(document).ready(function() { #{flash[:script]} }) </script>"
     end
   end
+
+  def google_api_key
+    case request.host
+    when "omnominator.r09.railsrumble.com" then "ABQIAAAApmg9CTn1PzMCUAqIAXT4DxR5gGtTsdQyE0WQ6vsc57Z5REGwwxTVOzlR0Om_YoTVyJtvtpVGhVo1mQ"
+    when "omnominator.com"                 then "ABQIAAAApmg9CTn1PzMCUAqIAXT4DxQERqfEovZDD2Fbqh9VgcPv9iD3NxTFB59bRp4vstpSK5SWG4BSZEHS2A"
+    else                                        "ABQIAAAApmg9CTn1PzMCUAqIAXT4DxQDNUKtWYO0YNsBQklWEm0Tg_LWZBSTnSUxt9AF-guCqB3aaNLPD82nWA"
+    end
+  end
+
 end
