@@ -72,15 +72,26 @@ body strong {
 }
 
 #yelp_message {
-  background: #F4F0E6 url(/images/yelp_left.png) no-repeat top left;
   height: 48px;
   padding: 14px 10px;
 }
 
+#yelp_message.content {
+  background: #F4F0E6 url(/images/yelp_content.png) no-repeat top left;
+}
+
+#yelp_message.happy {
+  background: #F4F0E6 url(/images/yelp_happy.png) no-repeat top left;
+}
+
+#yelp_message.mad {
+  background: #F4F0E6 url(/images/yelp_mad.png) no-repeat top left;
+}
+
 #yelp_message p {
-  background: #F4F0E6 url(/images/yelp_right.png) no-repeat top right;
+  background: #F4F0E6 url(/images/yelp_werds.png) no-repeat top right;
   margin: 0 0 0 62px;
-  padding: 14px 10px;
+  padding: 14px 15px 14px 10px;
   display: inline;
 }
 
@@ -270,10 +281,10 @@ a.remove {
 p input#nom {
   position: relative;
   z-index: 8;
-  top: 0;
-  left: -170px;
-  height: 242px;
-  width: 472px;
+  top: 30px;
+  left: -50px;
+  height: 122px;
+  width: 342px;
   background: transparent url(/images/nom.png) no-repeat top left;
   border: none;
   text-indent: -9000px;
@@ -287,6 +298,23 @@ p input#nom {
   -webkit-transform: rotate(-8deg);
   transform-origin: 25% 35%;
   transform: rotate(-8deg);
+}
+
+#shiro_neko {
+  z-index: 200;
+  background: transparent url(/images/shiro_neko.png) no-repeat 0 0;
+  height: 214px;
+  width: 218px;
+}
+
+p input#nom:hover {
+  background: transparent url(/images/nomnom.png) no-repeat top left;
+}
+
+p input#nom:active {
+  position: relative;
+  top: 32px;
+  left: -50px;
 }
 
 input#creator_email {
@@ -343,3 +371,18 @@ a {
 #yelp_contrib img {
   vertical-align: top;
 }
+
+#mail {
+  float: left;
+  background: transparent url(/images/mail.png) no-repeat top left;
+  height: 270px;
+  width: 291px;
+  padding: 56px 30px 0 75px;
+  text-align: center;
+}
+
+#mail h1 {
+  font-size: 1.7em;
+}
+
+#glossery
