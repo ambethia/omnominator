@@ -47,8 +47,14 @@
   </div>
 
   <form action="#" method="get" id="new_nom">
-    <p><input type="text" name="new_nom_name" id="new_nom_name"/></p>
-    <p><textarea name="new_nom_details" id="new_nom_details" rows="3" cols="24"></textarea></p>
+    <p>
+      <label for="new_nom_name" class="inside">Where 2 nom?</label>
+      <input type="text" name="new_nom_name" id="new_nom_name"/>
+    </p>
+    <p>
+      <label for="new_nom_details" class="inside">Sum details...</label>
+      <textarea name="new_nom_details" id="new_nom_details" rows="3" cols="24"></textarea>
+    </p>
     <p><input type="submit" value="Add" class="affirmative"/></p>
   </form>
 
@@ -56,7 +62,10 @@
     <h2>Ur Email</h2>
     <h2>Other Pplz Coming?</h2>
     <form action="#" method="get" id="sum_pplz">
-      <p><input type="text" id="creator_email" /></p>
+      <p>
+        <label for="creator_email" class="inside">you@example.com</label>
+        <input type="text" id="creator_email" name="creator_email" />
+      </p>
       <p><input type="text" name="ppl_emailz" /></p>
       <p><input type="text" name="ppl_emailz" /></p>
       <p><input type="text" name="ppl_emailz" /></p>

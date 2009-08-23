@@ -437,6 +437,12 @@ a {
   vertical-align: top;
 }
 
+form p { position:relative }
+label.inside { position:absolute; top:0; left:10px}
+
+label.inside[for=new_nom_details] {top:2px;}
+label.inside[for=creator_email]   {top:6px; left:30px;}
+
 #mail {
   z-index: 10;
   position: absolute;
