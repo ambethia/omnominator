@@ -64,6 +64,23 @@ describe Omnom do
 
       omnom.activate!
     end
+    
+    it "should not send emails again for an already activated omnom" do
+      omnom = Omnom.new(@valid_attributes)
+      omnom.stub!(:send_creator_email)
+
+      omnom.noms.build(:name => "Jake's Meal Barn")
+      omnom.noms.build(:name => "Sally's Salad Shack")
+      omnom.noms.build(:name => "Bob's Burger Bonanza")
+      ppl_one = omnom.pplz.build(:email => "kim@example.com")
+
+      Mailer.should_receive(:deliver_vote_invitation).once.with(omnom, ppl_one)
+
+      omnom.activate!      
+      omnom.activate!      
+      omnom.activate!      
+      omnom.activate!      
+    end
   end
 
   describe "tallies" do

@@ -26,6 +26,15 @@ class ApplicationController < ActionController::Base
   def vote
     @ppl   = Ppl.find_by_verification_code(params[:verification_code])
     @omnom = @ppl.omnom
+
+    # no-op for anyone but the creator, <3 Gavin.
+    @ppl.verify!
+
+    unless @ppl.voted_nom
+      render :vote
+    else
+      render :results
+    end
   end
 
   def check_your_mail
