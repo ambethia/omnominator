@@ -1,16 +1,16 @@
-<div id="icanhaznoms">
-<h2>Vote</h2>
+<div id="results_page">
+<h2 id="i_have_envelopes_plz">Pick <br>Nom!</h2>
 
 <% form_tag chad_path(@ppl.verification_code) do |f| %>
-  <ul>
+  <ul class="votez">
     <%- for nom in @ppl.omnom.noms do -%>
-    <li>
-      <%= radio_button_tag "nom_id", nom.id %>
-      <div class="name"><%=h nom.name %></div>
-      <div class="details"><%= nom.details %></div>
+    <li class="result">
+      <div class="pick"><%= radio_button_tag "nom_id", nom.id %></div>
+      <div class="nom"><div class="name"><%=h nom.name %></div>
+      <div class="details"><%= nom.details %></div></div>
+      <br>
     </li>
     <%- end -%>
   </ul>
-  <%= submit_tag %>
+  <div id="vote"><%= submit_tag %></div>
 <% end %>
-</div>
