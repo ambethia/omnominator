@@ -1,11 +1,12 @@
 google.load("maps", "2");
 
 var MAX_OMNOMS = 4;
+var DEFAULT_LOCATION = "Anytown, USA";
 
 function initializeMap() {  
   var zoom     = 3;
+  var location = DEFAULT_LOCATION;
   var latLng   = new GLatLng(39.50, -98.35);
-  var location = "Anytown, USA";
   if (google.loader.ClientLocation) {
     zoom = 12;
     latLng = new GLatLng(
@@ -264,6 +265,15 @@ $(document).ready(function() {
 
     $("#tooltip").hide();
 
+    $("#location_text").click( function()
+                               {
+                                 if( this.value == DEFAULT_LOCATION )
+                                 {
+                                   this.value = "";
+                                 }
+                               }
+                             );
+    
     $("#new_nom").submit(function() {
       addNom({
         name: this.new_nom_name.value,
