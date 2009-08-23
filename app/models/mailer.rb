@@ -15,6 +15,6 @@ class Mailer < ActionMailer::Base
     @subject            = "You've been asked to pick a place to eat on OmNominator"
     @sent_on            = Time.now
     @body[:ppl]         = ppl
-    @body[:creator]     = omnom.creator.name ? omnom.creator.email : omnom.creator.name
+    @body[:creator]     = omnom.creator.name ? omnom.creator.name : omnom.creator.email
   end
 end
