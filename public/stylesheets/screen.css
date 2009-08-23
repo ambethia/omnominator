@@ -1,3 +1,21 @@
+@import url(text.css);
+@import url(reset.css);
+
+body {
+  width: 960px;
+  margin: 0 auto;
+  background: #534741 url(/images/background.png) fixed repeat top left;
+}
+#header {
+  text-indent: -9000px;
+  height: 108px;
+  background: transparent url(/images/title.png) no-repeat top right;
+}
+
+#tell_me_how {
+  background-color: #F4F0E6;
+}
+
 #map_canvas {
   height: 200px;
   width:  300px;
@@ -14,19 +32,68 @@
 
 #icanhaznoms {
   float: left;
-  width: 320px;
+  width: 340px;
+  background-color: #F4F0E6;
+  margin-right: 20px;
 }
 
 #omnom {
+  background: #F4F0E6 url(/images/omnombg.png) repeat-y top right;
   float: left;
-  width: 320px;
+  width: 300px;
+  height: 540px;
+  background-color: #F4F0E6;
 }
 
 #ohaipplz {
+  background: transparent url(/images/ohhai.png) no-repeat 10px 10px;
   float: left;
-  width: 320px;
+  width: 300px;
+  height: 540px;
+  background-color: #F4F0E6;
 }
-
+#ohaipplz h2 {
+  text-indent: -9000px;
+}
+#ohaipplz form {
+  margin: 80px 0 0;
+  text-align: center;
+}
+#ohaipplz input {
+  background: none;
+  border: none;
+  margin: 5px 0;
+}
+#ohaipplz p input {
+  font-size: 1.5em;
+  background: #fff;
+  width: 210px;
+  padding: 0 20px;
+  border: 3px solid #998675;
+  filter:alpha(opacity=80);
+  -moz-opacity:0.8;
+  -khtml-opacity: 0.8;
+  opacity: 0.8;
+  -moz-border-radius: 20px;
+}
+p input#nom {
+  height: 230px;
+  width: 472px;
+  margin-left: -200px;
+  background: transparent url(/images/nom.png) no-repeat 10px 10px;
+  border: none;
+  text-indent: -9000px;
+  filter:alpha(opacity=100);
+  -moz-opacity: 1;
+  -khtml-opacity: 1;
+  opacity: 1;
+}
+p input#nom:hover {
+  background: transparent url(/images/nom_over.png) no-repeat 10px 10px;
+}
+input#creator_email {
+  margin: 0 0 65px;
+}
 #sum_noms .name {
   font-weight: bold;
 }
