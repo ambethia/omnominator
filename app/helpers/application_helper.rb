@@ -32,7 +32,7 @@ module ApplicationHelper
   end
 
   def gravatar_image(email)
-    image_tag(Gravatar.new(email, { :default => "/images/default_gravatar.png" }).url)
+    image_tag(Gravatar.new(email, { :default => "http://#{request.host_with_port}/images/default_gravatar.png" }).url)
   end
 
   def flash_script

@@ -11,4 +11,11 @@ describe Nom do
     Nom.create!(@valid_attributes)
   end
 
+  it "should strip out not allowed HTML tags from the details" do
+    nom = Nom.new(@valid_attributes.merge(:details => "<script>alert()</alert><p>paragraph</p><a>link</a><br/>"))
+
+    nom.save
+
+    nom.details.should_not match(/script/)
+  end
 end
