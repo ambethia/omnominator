@@ -1,6 +1,6 @@
 google.load("maps", "2");
 
-var MAX_OMNOMS       = 4;
+var MAX_NOMS         = 4;
 var DEFAULT_LOCATION = "Anytown, USA";
 
 function initializeMap() {  
@@ -62,7 +62,7 @@ function createMapMarker(business, position, index) {
 function addYelpishNom(business) {
   var formatPhone = function(num) {
     if(num.length != 10) return '';
-    return '(' + num.slice(0,3) + ') ' + num.slice(3,6) + '-' + num.slice(6,10) + '<br/>';
+    return '(' + num.slice(0,3) + ') ' + num.slice(3,6) + '-' + num.slice(6,10) + '<br>';
   }
 
   var yelp_details = {
@@ -70,7 +70,7 @@ function addYelpishNom(business) {
     phone: formatPhone(business.phone),
     url: business.url
   }
-  var details = $.template('${address}<br/>${phone} (<a href="${url}">Details</a>)').apply(yelp_details);
+  var details = $.template('${address}<br>${phone} (<a href="${url}">Details</a>)').apply(yelp_details);
   addNom({
     name: business.name,
     details: details
@@ -190,10 +190,32 @@ function empty_omnom()
   $("#empty_omnom").show();    
 }
 
+function findNom(name,details)
+{
+  var found_existing_nom = false;
+  var list = $("#sum_noms li").each( function()
+                                  {
+                                    var nom_name    = $(this).children(".name").text();
+                                    var nom_details = $(this).children(".details").html();
+                                    if(nom_name == name && nom_details == details )
+                                    {
+                                      found_existing_nom = true;
+                                    }
+                                  }
+                                );
+
+   return found_existing_nom;
+}
+
 function addNom(omnom) {
   var list = $("#sum_noms");
 
-  if ( howManyNoms() < MAX_OMNOMS) {
+  if ( howManyNoms() < MAX_NOMS) {
+    if(findNom(omnom.name, omnom.details))
+    {
+      $.flash.warn("Already nomz there", "dupliCAT");
+      return;
+    }
     var template = $.template('<li><div class="name">${name}</div><div class="details">${details}</div><a href="#" class="remove">X</a></li>');
     var nom_item = template.apply(omnom);
     list.append(nom_item).children(':last').hide().blindDown();
