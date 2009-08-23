@@ -76,12 +76,13 @@ body strong {
   font-family: "Layne Lighthouse Bold",Georgia, serif;
 }
 
-
-#header {
+#header a {
+  display: block;
   text-indent: -9000px;
   height: 108px;
   background: transparent url(/images/title.png) no-repeat top right;
 }
+
 
 #tell_me_how, #glossary {
   font-size: .8em;
