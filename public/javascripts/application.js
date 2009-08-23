@@ -199,7 +199,7 @@ function addNom(omnom) {
     list.append(nom_item).children(':last').hide().blindDown();
     $("#sum_noms .remove").click(removeNom);
   } else {
-    $.flash.warn("My belly hurts", "Too much noms.")
+    $.flash.warn("Too much noms.", "My belly hurts")
   };
   has_omnoms();
   $("#new_nom").reset();
@@ -242,7 +242,7 @@ function createOmnom() {
                     {
                       var json = JSON.parse( XMLHttpRequest.responseText );
                       var first_error = json[0][1];
-                      $.flash.failure("Oh, no you didn't", first_error);
+                      $.flash.failure(first_error, "Eek!");
                     }
                     catch(e)
                     {
