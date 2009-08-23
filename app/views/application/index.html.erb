@@ -21,46 +21,47 @@
   <form action="#" met hod="get" id="location_form">
     <div>
       <label>
-        Move Map (City, State or Zip)
+        <p>Move Map (City, State or Zip)</p>
         <input type="text" name="location_text" value="" id="location_text"/>
       </label>
-      <input type="submit" value="Go &rarr;"/>
+      <input type="submit" value="Go &rarr;" class="affirmative"/>
     </div>
   </form>
   <%= genre_input_list %>
 </div>
+<div id="wrapper">
+  <div id="omnom">
+    <h2>Omnoms!</h2>
+    <p>These are the places folks will choose between. Pick some places from the map at left, or add your own.</p>
+    <ul id="sum_noms">
+      <li>
+        <div class="name">Mema's Alaskan Tacos</div>
+        <div class="details">123 Main St<br/>(813) 514-TACO (<a href="http://alaskantacos.com">Reviews</a>)</div>
+        <a href="#" class="remove">X</a>
+      </li>
+    </ul>
 
-<div id="omnom">
-  <h2>Omnoms!</h2>
-  <p>These are the places folks will choose between. Pick some places from the map at left, or add your own.</p>
-  <ul id="sum_noms">
-    <li>
-      <div class="name">Mema's Alaskan Tacos</div>
-      <div class="details">123 Main St<br/>(813) 514-TACO (<a href="http://alaskantacos.com">Reviews</a>)</div>
-      <a href="#" class="remove">X</a>
-    </li>
-  </ul>
+    <form action="#" method="get" id="new_nom">
+      <p><input type="text" name="new_nom_name" id="new_nom_name"/></p>
+      <p><textarea name="new_nom_details" id="new_nom_details" rows="3" cols="24"></textarea></p>
+      <p><input type="submit" value="Add" class="affirmative"/></p>
+    </form>
+  </div>
 
-  <form action="#" method="get" id="new_nom">
-    <p><input type="text" name="new_nom_name" id="new_nom_name"/></p>
-    <p><textarea name="new_nom_details" id="new_nom_details" rows="3" cols="24"></textarea></p>
-    <p><input type="submit" value="Add"/></p>
-  </form>
+  <div id="ohaipplz">
+    <h2>Ur Email</h2>
+    <h2>Other Pplz Coming?</h2>
+    <form action="#" method="get" id="sum_pplz">
+      <p><input type="text" id="creator_email" /></p>
+      <p><input type="text" name="ppl_emailz" /></p>
+      <p><input type="text" name="ppl_emailz" /></p>
+      <p><input type="text" name="ppl_emailz" /></p>
+      <p><input type="text" name="ppl_emailz" /></p>
+      <p><input type="text" name="ppl_emailz" /></p>
+      <p><input type="text" name="ppl_emailz" /></p>
+      <p><input type="submit" value="Nom!!" id="nom"></p>
+    </form>
+
+  </div>
+
 </div>
-
-<div id="ohaipplz">
-  <h2>Ur Email</h2>
-  <h2>Other Pplz Coming?</h2>
-  <form action="#" method="get" id="sum_pplz">
-    <p><input type="text" id="creator_email" /></p>
-    <p><input type="text" name="ppl_emailz" /></p>
-    <p><input type="text" name="ppl_emailz" /></p>
-    <p><input type="text" name="ppl_emailz" /></p>
-    <p><input type="text" name="ppl_emailz" /></p>
-    <p><input type="text" name="ppl_emailz" /></p>
-    <p><input type="text" name="ppl_emailz" /></p>
-    <p><input type="submit" value="Nom!!" id="nom"></p>
-  </form>
-  
-</div>
-
