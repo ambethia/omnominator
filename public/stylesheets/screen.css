@@ -13,7 +13,18 @@ body {
 }
 
 #tell_me_how {
+  margin: 0 auto 20px;
+  padding: 15px 60px;
+  width: 800px;
   background-color: #F4F0E6;
+  -moz-transform-origin: 20% 0;
+  -moz-transform: rotate(-1deg);
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 1px 3px 20px #111;
+  -webkit-box-shadow: 1px 3px 20px #111;
+  box-shadow: 1px 3px 20px #111;
 }
 
 #map_canvas {
@@ -36,7 +47,12 @@ body {
   background-color: #F4F0E6;
   margin-right: 20px;
 }
-
+#categories {
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+  -koz-column-count: 2;
+  column-count: 2;
+}
 #omnom {
   background: #F4F0E6 url(/images/omnombg.png) repeat-y top right;
   float: left;
@@ -65,7 +81,7 @@ body {
   margin: 5px 0;
 }
 #ohaipplz p input {
-  font-size: 1.5em;
+  font-size: 1.6em;
   background: #fff;
   width: 210px;
   padding: 0 20px;
@@ -77,9 +93,9 @@ body {
   -moz-border-radius: 20px;
 }
 p input#nom {
-  height: 230px;
+  margin: -27px 0 0 -160px;
+  height: 242px;
   width: 472px;
-  margin-left: -200px;
   background: transparent url(/images/nom.png) no-repeat 10px 10px;
   border: none;
   text-indent: -9000px;
@@ -87,9 +103,6 @@ p input#nom {
   -moz-opacity: 1;
   -khtml-opacity: 1;
   opacity: 1;
-}
-p input#nom:hover {
-  background: transparent url(/images/nom_over.png) no-repeat 10px 10px;
 }
 input#creator_email {
   margin: 0 0 65px;
