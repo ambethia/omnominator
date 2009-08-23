@@ -51,9 +51,9 @@ module ApplicationHelper
 
   def results_status(omnom)
     if omnom.pplz.all? { |ppl| ppl.voted_nom }
-      return "Results are in"
+      return "Results are <br/> in!"
     else
-      return "Results so far"
+      return "Results so <br/> far."
     end
   end
 end
