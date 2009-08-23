@@ -31,4 +31,14 @@ module ApplicationHelper
     return content_tag "ul", ["\n", items.join("\n"), "\n"], :id => "categories"
   end
 
+  def gravatar_image(email)
+    image_tag(Gravatar.new(email, { :default => "/images/default_gravatar.png" }).url)
+  end
+
+  def flash_script
+    if flash[:script]
+      "<script> $(document).ready(function() { #{flash[:script]} }) </script>"
+    end
+  end
+
 end

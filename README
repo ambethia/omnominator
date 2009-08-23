@@ -4,10 +4,11 @@
 
 * jQuery
   * jRails
-  * jQuery Templates
+  * Plugins: Templates, Flash Message
 * rspec
   * rspec-rails
 * Yelp! API
 * Google JS API
   * Maps
 * Guid
+* Gravatar

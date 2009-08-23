@@ -1,1 +1,14 @@
 <h2>Vote</h2>
+
+<% form_tag chad_path(@ppl.verification_code) do |f| %>
+  <ul>
+    <%- for nom in @ppl.omnom.noms do -%>
+    <li>
+      <%= radio_button_tag "nom_id", nom.id %>
+      <div class="name"><%=h nom.name %></div>
+      <div class="details"><%= nom.details %></div>
+    </li>
+    <%- end -%>
+  </ul>
+  <%= submit_tag %>
+<% end %>

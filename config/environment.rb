@@ -6,4 +6,5 @@ Rails::Initializer.run do |config|
   config.time_zone = 'UTC'
 
   config.gem 'guid'
+  config.gem 'gravatar'
 end

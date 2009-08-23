@@ -22,19 +22,28 @@ class ApplicationController < ActionController::Base
     render :status => 500,
            :json => [["unknown", e.inspect]].to_json
   end
-
+  
+  # Ppl#verify! is a no-op for anyone but the creator, <3 Gavin.
   def vote
-    @ppl   = Ppl.find_by_verification_code(params[:verification_code])
-    @omnom = @ppl.omnom
-
-    # no-op for anyone but the creator, <3 Gavin.
+    @ppl = Ppl.find_by_verification_code(params[:verification_code])
     @ppl.verify!
-
+    flash[:script] = nil
     unless @ppl.voted_nom
       render :vote
     else
       render :results
     end
+  end
+
+  def chad
+    @ppl = Ppl.find_by_verification_code(params[:verification_code])
+    @nom = @ppl.omnom.noms.find(params[:nom_id])
+    @ppl.update_attribute :voted_nom, @nom
+    flash[:script] = nil
+    redirect_to vote_path(@ppl.verification_code)
+  rescue
+    flash[:script] = "$.flash.error('FAIL', 'Where ya gonna nom?')"
+    render :vote
   end
 
   def check_your_mail

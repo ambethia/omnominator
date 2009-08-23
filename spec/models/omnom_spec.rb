@@ -76,10 +76,10 @@ describe Omnom do
 
       Mailer.should_receive(:deliver_vote_invitation).once.with(omnom, ppl_one)
 
-      omnom.activate!      
-      omnom.activate!      
-      omnom.activate!      
-      omnom.activate!      
+      omnom.activate!
+      omnom.activate!
+      omnom.activate!
+      omnom.activate!
     end
   end
 
