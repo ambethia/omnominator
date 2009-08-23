@@ -415,6 +415,8 @@ $(document).ready(function() {
     $("#empty_omnom").show();    
     $("#omnom").hide();
 
+    $("label.inside").inFieldLabels();
+
     $("#sum_noms .remove").click(removeNom);
   }
 });
