@@ -553,8 +553,8 @@ label.inside[for=creator_email]   {top:6px; left:30px;}
 
 #vote input:active {
   position: absolute;
-  bottom: -32px;
-  right: 60px;
+  bottom: -132px;
+  left: 280px;
 }
 
 .result .pplz p {
