@@ -72,6 +72,7 @@ body strong {
 }
 
 #icanhaznoms {
+  position: relative;
   z-index: 2;
   float: left;
   width: 340px;
@@ -120,6 +121,7 @@ input.affirmative {
   -moz-column-count: 2;
   -webkit-column-count: 2;
   column-count: 2;
+  margin-bottom: 10px;
 }
 
 #wrapper {
@@ -151,7 +153,6 @@ input.affirmative {
   height: 435px;
   background-color: #F4F0E6;
 }
-
 
 #omnom h2, #empty_omnom h2 {
   text-indent: -9000px;
@@ -311,4 +312,22 @@ a {
 }
 #lame_pplz{
   margin-top: 10px;
+}
+
+#yelp_contrib {
+/*  font-size: 0.6em;*/
+  font-size: 0.9em;
+  line-height: 32px;
+  position: absolute;
+  bottom: 0px;
+  right: 5px;
+  filter:alpha(opacity=80);
+  -moz-opacity:0.8;
+  -khtml-opacity: 0.8;
+  opacity: 0.8;
+  
+}
+
+#yelp_contrib img {
+  vertical-align: top;
 }
