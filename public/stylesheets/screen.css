@@ -72,10 +72,16 @@ body strong {
 }
 
 #yelp_message {
-  background: #F4F0E6 url(/images/yelp_right.png) no-repeat top right;
-  margin-left: 72px;
+  background: #F4F0E6 url(/images/yelp_left.png) no-repeat top left;
   height: 48px;
   padding: 14px 10px;
+}
+
+#yelp_message p {
+  background: #F4F0E6 url(/images/yelp_right.png) no-repeat top right;
+  margin: 0 0 0 62px;
+  padding: 14px 10px;
+  display: inline;
 }
 
 #icanhaznoms {
@@ -83,7 +89,7 @@ body strong {
   z-index: 2;
   float: left;
   width: 340px;
-  background: #F4F0E6 url(/images/yelp_left.png) no-repeat 10px 10px;
+  background: #F4F0E6;
   margin: 0 20px 0 0;
   padding: 10px 10px 20px;
   -moz-border-radius: 3px;
