@@ -127,7 +127,7 @@ function yelp() {
               "&ywsid="    + "kIXgBO4ryiAN3oPxskwNmg";
     $.getJSON(URI, function(data){
       if(data.message.text == "OK") {
-        $("#yelp_message").text("Om nom nom nom...")
+        $("#yelp_message p").text("Om nom nom nom...")
         map.clearOverlays();
         if (data.businesses.length > 0) {
           for(var i = 0; i < data.businesses.length; i++) {
@@ -136,15 +136,15 @@ function yelp() {
             createMapMarker(business, position, i);
           }
         } else {
-          $("#yelp_message").text("No noms... qq.")
+          $("#yelp_message p").text("No noms... qq.")
         }
       }
       else {
         var message = data.message.text;
         if (message == "Area too large") {
-          $("#yelp_message").text("Zoom moar!");
+          $("#yelp_message p").text("Zoom moar!");
         } else {
-          $("#yelp_message").text("Error: " + message);
+          $("#yelp_message p").text("Error: " + message);
         }
       }
     });
