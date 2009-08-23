@@ -2,6 +2,19 @@ google.load("maps", "2");
 
 var MAX_NOMS         = 5;
 var DEFAULT_LOCATION = "Anytown, USA";
+var EPSILON          = 0.00001;
+
+function initializeGoogleMaps()
+{
+  geocoder = new GClientGeocoder();
+  /* Opera Hack */
+  setTimeout( function()
+              {
+                initializeMap();
+                initializeMarkers();
+              },
+              100 );  
+}
 
 function initializeMap() {  
   var zoom     = 3;
@@ -15,6 +28,7 @@ function initializeMap() {
     );
     location = formattedClientLocation();
   }
+
   $("#location_text").get(0).value = location;
   map = new GMap2($("#map_canvas").get(0));
   GEvent.addListener(map, "moveend", function() { yelp(); });
@@ -121,44 +135,69 @@ function map_message(message,klass)
 }
 
 function yelp() {
-  try
-  {
     var bounds = map.getBounds();
+
+    var tl_lat = bounds.getSouthWest().lat();
+    var tl_lng = bounds.getSouthWest().lng();
+    var br_lat = bounds.getNorthEast().lat();
+    var br_lng = bounds.getNorthEast().lng();
+
     var URI = "http://api.yelp.com/business_review_search?" +
               "&num_biz_requested=10&callback=?" +
               "&category=" + categoriesFilterString() +
-              "&tl_lat="   + bounds.getSouthWest().lat() +
-              "&tl_long="  + bounds.getSouthWest().lng() + 
-              "&br_lat="   + bounds.getNorthEast().lat() + 
-              "&br_long="  + bounds.getNorthEast().lng() +
+              "&tl_lat="   + tl_lat  +
+              "&tl_long="  + tl_lng + 
+              "&br_lat="   + br_lat  + 
+              "&br_long="  + br_lng +
               "&ywsid="    + "kIXgBO4ryiAN3oPxskwNmg";
-    $.getJSON(URI, function(data){
-      if(data.message.text == "OK") {
-        map_message("Om nom nom nom...", "happy");
-        map.clearOverlays();
-        if (data.businesses.length > 0) {
-          for(var i = 0; i < data.businesses.length; i++) {
-            var business = data.businesses[i];
-            var position = new GLatLng(business.latitude, business.longitude);
-            createMapMarker(business, position, i);
-          }
-        } else {
-          map_message("No noms... qq.", "mad");
-        }
-      }
-      else {
-        var message = data.message.text;
-        if (message == "Area too large") {
-          map_message("Zoom moar!", "content");
-        } else {
-          map_message("Error: " + message, "mad");
-        }
-      }
+
+    var ajaxSuccess = function(data)
+                    {
+                      if(data.message.text == "OK")
+                      {
+                        map_message("Om nom nom nom...", "happy");
+                        map.clearOverlays();
+                        if (data.businesses.length > 0)
+                        {
+                          for(var i = 0; i < data.businesses.length; i++)
+                          {
+                            var business = data.businesses[i];
+                            var position = new GLatLng(business.latitude, business.longitude);
+                            createMapMarker(business, position, i);
+                          }
+                        }
+                        else
+                        {
+                          map_message("No noms... qq.", "mad");
+                        }
+                      }
+                      else
+                      {
+                        var message = data.message.text;
+                        if (message == "Area too large")
+                        {
+                          map_message("Zoom moar!", "content");
+                        }
+                        else
+                        {
+                          map_message("Error: " + message, "mad");
+                        }
+                      }
+                    };
+
+    var ajaxError = function(XMLHttpRequest, textStatus, errorThrown)
+                    {
+                    };
+
+    $.ajax({
+      type:        "GET",
+      url:         URI,
+      cache:       false,
+      contentType: "application/json",
+      dataType:    "json",
+      error:       ajaxError,
+      success:     ajaxSuccess
     });
-  }
-  catch(e)
-  {
-  }
 }
 
 function categoriesFilterString() {
@@ -250,6 +289,8 @@ function removeNom() {
   {
     empty_omnom();
   }
+
+  return false;
 }
 
 function createOmnom() {
@@ -310,10 +351,7 @@ function createOmnom() {
 
 $(document).ready(function() {
   if ($("#oh_hai").length > 0) {
-    initializeMap();
-    initializeMarkers();
-
-    geocoder = new GClientGeocoder();
+    initializeGoogleMaps();
 
     $("#location_form").submit(function() {
       iCanHazLocation($("#location_text").get(0).value);
