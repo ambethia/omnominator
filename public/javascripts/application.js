@@ -30,10 +30,11 @@ function initializeMarkers() {
   icon.shadowSize = new GSize(38, 29);
   icon.iconAnchor = new GPoint(15, 29);  
   
-  var sushi       = new GIcon(icon, "/images/markers/sushi.png")
+  // Example of how we'd add custom icons for food genres.
+  // var sushi       = new GIcon(icon, "/images/markers/sushi.png")
   
   categoryIcons = {
-    "sushi":      sushi
+    // "sushi":      sushi
   }
   
   defaultIcon = icon;
