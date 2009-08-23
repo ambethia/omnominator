@@ -32,7 +32,7 @@ module ApplicationHelper
   end
 
   def gravatar_image(email)
-    image_tag(Gravatar.new(email, { :default => "http://#{request.host_with_port}/images/default_gravatar.png" }).url)
+    image_tag(Gravatar.new(email, { :default => "http://#{request.host_with_port}/images/default_gravatar.png", :size => 32 }).url, :size => "32x32")
   end
 
   def flash_script
@@ -49,4 +49,11 @@ module ApplicationHelper
     end
   end
 
+  def results_status(omnom)
+    if omnom.pplz.all? { |ppl| ppl.voted_nom }
+      return "Results are in"
+    else
+      return "Results so far"
+    end
+  end
 end

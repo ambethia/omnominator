@@ -1,34 +1,43 @@
-<div id="icanhaznoms">
-<h2>Results!</h2>
-
-<ul id="results_list">
-  <%- lame_pplz = @ppl.omnom.pplz %>
-  <%- for nom_tally in @ppl.omnom.tally do -%>
-  <li>
-    <div class="name"><%=h nom_tally[:nom].name %></div>
-    <div class="details"><%= nom_tally[:nom].details %></div>
-    <div class="pplz">
-      <% if nom_tally[:pplz].empty? %>
-        <p>No votes!</p>
-      <% else %>
-        <% nom_tally[:pplz].each do |ppl| %>
-          <%= gravatar_image(ppl.email) %>
-          <p><%= ppl.name %></p>
-          <%- lame_pplz -= [ppl] %>
-        <% end %>
+<div id="results_page">
+  <h2 id="i_have_envelopes_plz"><%= results_status(@ppl.omnom) %></h2>
+    <ul id="results_list">
+      <%- lame_pplz = @ppl.omnom.pplz %>
+      <%- for nom_tally in @ppl.omnom.tally do -%>
+      <li class="result">
+        <div class="nom">
+          <div class="name"><%=h nom_tally[:nom].name %></div>
+          <div class="details"><%= nom_tally[:nom].details %></div>
+        </div>
+        <div class="pplz">
+          <% if nom_tally[:pplz].empty? %>
+            <p>No votes!</p>
+          <% else %>
+            <% nom_tally[:pplz].each do |ppl| %>
+              <ul>
+                <li><%= ppl.email %>  <%= gravatar_image(ppl.email) %></li>
+              </ul>
+              <%- lame_pplz -= [ppl] %>
+            <% end %>
+          <% end %>
+        </div>
+        <br />
+      </li>
+      <%- end -%>
+      <% unless lame_pplz.empty? %>
+      <li class="result">
+        <div class="nom">
+          <div class="name">Lame pplz who no haz voted yet</div>
+        </div>
+        <div class="pplz">
+          <ul>
+            <% lame_pplz.each do |ppl| %>
+                <li><%= ppl.email %> <%= gravatar_image(ppl.email) %></li>
+            <% end %>      
+          </ul>
+        </div>
+        <br/>
+      </li>
       <% end %>
-    </div>
-  </li>
-  <%- end -%>
+    </ul>
+</div>
 
-</ul>
-<% unless lame_pplz.empty? %>
-<div class="lame_pplz">
-  <h3>Lame pplz who no haz voted yet</h3>
-  <% lame_pplz.each do |ppl| %>
-    <%= gravatar_image(ppl.email) %>
-    <p><%= ppl.name %></p>
-  <% end %>      
-</div>
-<% end %>
-</div>
