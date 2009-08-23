@@ -154,6 +154,11 @@ body strong {
   box-shadow: 1px 3px 20px #111;
 }
 
+#icanhaznoms h3 {
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
 #location_form {
   margin-bottom: .7em;
 }
