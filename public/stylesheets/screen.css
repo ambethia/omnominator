@@ -56,7 +56,7 @@ body strong {
   width:  330px;
   z-index: 9;
   border: 3px solid #42210B;
-  margin: 0 auto 5px;
+  margin: -20px auto 5px;
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
   border-radius: 7px;
@@ -71,14 +71,21 @@ body strong {
   z-index: 5000;
 }
 
+#yelp_message {
+  background: #F4F0E6 url(/images/yelp_right.png) no-repeat top right;
+  margin-left: 72px;
+  height: 48px;
+  padding: 14px 10px;
+}
+
 #icanhaznoms {
   position: relative;
   z-index: 2;
   float: left;
   width: 340px;
-  background-color: #F4F0E6;
+  background: #F4F0E6 url(/images/yelp_left.png) no-repeat 10px 10px;
   margin: 0 20px 0 0;
-  padding: 20px 10px;
+  padding: 10px 10px 20px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -125,6 +132,7 @@ input.affirmative {
 }
 
 #wrapper {
+  position: relative;
   background-color: #F4F0E6;
   float: left;
   width: 560px;
@@ -142,7 +150,6 @@ input.affirmative {
   -webkit-box-shadow: 1px 3px 20px #111;
   box-shadow: 1px 3px 20px #111;
 }
-
 
 #omnom, #empty_omnom {
   position: relative;
@@ -257,11 +264,11 @@ a.remove {
 p input#nom {
   position: relative;
   z-index: 8;
-  top: -30px;
+  top: 0;
   left: -170px;
   height: 242px;
   width: 472px;
-  background: transparent url(/images/nom.png) no-repeat 10px 10px;
+  background: transparent url(/images/nom.png) no-repeat top left;
   border: none;
   text-indent: -9000px;
   filter:alpha(opacity=100);
