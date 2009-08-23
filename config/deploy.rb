@@ -1,6 +1,6 @@
 set  :application,           "omnominator"
 set  :repository,            "git@github.com:railsrumble/rr09-team-174.git"
-set  :branch,                "release"
+set  :branch,                "railsrumble09"
 set  :scm,                   :git
 set  :git_enable_submodules, true
 set  :deploy_via,            :remote_cache
