@@ -1,0 +1,17 @@
+@font-face {
+font-family: "Layne Lighthouse";
+src: url("/fonts/PhaistosDisk_-_Layne_Lighthouse.ttf")
+}
+
+@font-face {
+font-family: "Layne Lighthouse Bold";
+src: url("/fonts/PhaistosDisk_-_Layne_Lighthouse_bold.ttf")
+}
+
+body {
+  font: 100% "Layne Lighthouse",Georgia, serif;
+}
+
+body strong {
+  font-family: "Layne Lighthouse Bold",Georgia, serif;
+}
