@@ -581,3 +581,15 @@ h2#i_have_envelopes_plz {
 br {
   clear: both;
 }
+
+#rumbler_banner {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: block;
+  height: 125px;
+  width: 125px;
+  background: url(/images/rumble.png) no-repeat;
+  text-indent: -999em;
+  text-decoration: none;
+}
