@@ -1,6 +1,6 @@
 google.load("maps", "2");
 
-var MAX_NOMS         = 4;
+var MAX_NOMS         = 5;
 var DEFAULT_LOCATION = "Anytown, USA";
 
 function initializeMap() {  
@@ -62,7 +62,7 @@ function createMapMarker(business, position, index) {
 function addYelpishNom(business) {
   var formatPhone = function(num) {
     if(num.length != 10) return '';
-    return '(' + num.slice(0,3) + ') ' + num.slice(3,6) + '-' + num.slice(6,10) + '<br>';
+    return '(' + num.slice(0,3) + ') ' + num.slice(3,6) + '-' + num.slice(6,10);
   }
 
   var yelp_details = {
@@ -327,7 +327,7 @@ $(document).ready(function() {
 
       if( !name )
       {
-        $.flash.warn("Must tell me the name of the location", "Needz more info")
+        $.flash.warn("Must tell me the name of the location", "Need moar info")
         return false;
       }
       addNom( {
