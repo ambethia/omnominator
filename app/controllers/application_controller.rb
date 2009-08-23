@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   def vote
     @ppl = Ppl.find_by_verification_code(params[:verification_code])
     unless @ppl
-      flash[:script] = 'No cheating.'
+      flash[:script] = "$.flash.warn('Nanny-nanny boo-boo pants on fire', 'No cheating.')"
       redirect_to "/" and return
     end
     @ppl.verify!
