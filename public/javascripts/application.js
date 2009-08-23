@@ -1,6 +1,6 @@
 google.load("maps", "2");
 
-var MAX_OMNOMS = 5;
+var MAX_OMNOMS = 4;
 
 function initializeMap() {  
   var zoom     = 3;
