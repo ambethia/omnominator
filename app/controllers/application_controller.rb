@@ -26,7 +26,11 @@ class ApplicationController < ActionController::Base
   
   # Ppl#verify! is a no-op for anyone but the creator, <3 Gavin.
   def vote
-    @ppl = find_by_verification_code(params[:verification_code])
+    @ppl = Ppl.find_by_verification_code(params[:verification_code])
+    unless @ppl
+      flash[:script] = 'No cheating.'
+      redirect_to "/" and return
+    end
     @ppl.verify!
     flash[:script] = nil
 
