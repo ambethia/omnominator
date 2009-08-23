@@ -1,0 +1,25 @@
+<h2>Result</h2>
+
+<ul>
+  <%- lame_pplz = @ppl.omnom.pplz %>
+  <%- for nom_tally in @ppl.omnom.tally do -%>
+  <li>
+    <div class="name"><%=h nom_tally[:nom].name %></div>
+    <div class="details"><%= nom_tally[:nom].details %></div>
+    <div class="pplz">
+      <% nom_tally[:pplz].each do |ppl| %>
+        <%= gravatar_image(ppl.email) %>
+        <p><%= ppl.name %></p>
+        <%- lame_pplz -= [ppl] %>
+      <% end %>
+    </div>
+  </li>
+  <%- end -%>
+
+  <div class="lame_pplz">
+    <% lame_pplz.each do |ppl| %>
+      <%= gravatar_image(ppl.email) %>
+      <p><%= ppl.name %></p>
+    <% end %>      
+  </div>
+</ul>

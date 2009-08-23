@@ -40,5 +40,4 @@ module ApplicationHelper
       "<script> $(document).ready(function() { #{flash[:script]} }) </script>"
     end
   end
-
 end
