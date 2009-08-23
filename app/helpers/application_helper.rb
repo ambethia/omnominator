@@ -49,4 +49,11 @@ module ApplicationHelper
     end
   end
 
+  def results_status(omnom)
+    if omnom.pplz.all? { |ppl| ppl.voted_nom }
+      return "Results are in"
+    else
+      return "Results so far"
+    end
+  end
 end
