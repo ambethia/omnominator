@@ -300,10 +300,18 @@ $(document).ready(function() {
                              );
     
     $("#new_nom").submit(function() {
-      addNom({
-        name: this.new_nom_name.value,
-        details: this.new_nom_details.value
-      });
+      var name    = $(this.new_nom_name).val();
+      var details = $(this.new_nom_details).val();
+
+      if( !name )
+      {
+        $.flash.warn("Must tell me the name of the location", "Needz more info")
+        return false;
+      }
+      addNom( {
+                name: name,
+                details: details
+              } );
       return false;
     });
 
