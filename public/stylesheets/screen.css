@@ -159,8 +159,7 @@ input.affirmative {
 }
 
 #sum_noms {
-  background: transparent url(/images/taco_icon.png) no-repeat 5px 0;
-  padding-left: 63px;
+  padding-left: 10px;
   padding-top: 15px;
   font-size: .7em;
 }
@@ -177,7 +176,7 @@ input.affirmative {
 a.remove {
   color: #42210B;
   position: relative;
-  left: 150px;
+  left: 200px;
   top: -20px;
   font: 10px "Arial Black", Gadget, sans-serif;
   background: #F78288;
@@ -186,9 +185,9 @@ a.remove {
 }
 
 #new_nom {
-  padding:60px 20px 0;
   position: absolute;
   bottom: 13px;
+  left: 30px;
 }
 
 #new_nom_name, #new_nom_details {
