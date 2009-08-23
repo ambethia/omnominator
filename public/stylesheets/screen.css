@@ -6,6 +6,7 @@ body {
   margin: 0 auto;
   background: #534741 url(/images/background.png) fixed repeat top left;
 }
+
 #header {
   text-indent: -9000px;
   height: 108px;
@@ -13,16 +14,17 @@ body {
 }
 
 #tell_me_how {
+  font-size: .8em;
   z-index: -1;
   margin: -5px auto 10px;
   padding: 15px 60px;
-  width: 800px;
+  width: 600px;
   background-color: #F4F0E6;
-  -moz-transform-origin: 80% 0;
+  -moz-transform-origin: 0 0;
   -moz-transform: rotate(-1deg);
-  -webkit-transform-origin: 80% 0;
+  -webkit-transform-origin: 30% 0;
   -webkit-transform: rotate(-1deg);
-  transform-origin: 80% 0;
+  transform-origin: 0 0;
   transform: rotate(-1deg);
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -30,12 +32,18 @@ body {
   -moz-box-shadow: 1px 3px 20px #111;
   -webkit-box-shadow: 1px 3px 20px #111;
   box-shadow: 1px 3px 20px #111;
+  display: none;
 }
 
 #map_canvas {
   height: 200px;
-  width:  300px;
-  z-index: 3;
+  width:  330px;
+  z-index: 9;
+  border: 3px solid #42210B;
+  margin: 0 auto 5px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
 }
 
 #tooltip {
@@ -52,7 +60,7 @@ body {
   float: left;
   width: 340px;
   background-color: #F4F0E6;
-  margin: 10px 20px 0 0;
+  margin: 0 20px 0 0;
   padding: 20px 10px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -61,17 +69,17 @@ body {
   -webkit-box-shadow: 1px 3px 20px #111;
   box-shadow: 1px 3px 20px #111;
 }
+
 #location_form {
   margin-bottom: .7em;
 }
-#location_form p {
-  margin-bottom: .7em;
-}
+
 input#location_text {
-  font-size: 1em;
+  font-size: .8em;
   background: #fff;
   width: 140px;
   padding: 0 .5em;
+  margin-right: .4em;
   border: 3px solid #998675;
   filter:alpha(opacity=80);
   -moz-opacity:0.8;
@@ -81,24 +89,24 @@ input#location_text {
   -webkit-border-radius: 20px;
   border-radius: 20px;
 }
+
 input.affirmative {
-  font-size: 1em;
+  font-size: .8em;
   background: #C9D159;
   padding: 0 .5em;
   border: 3px solid #7F8212;
   -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
   border-radius: 20px;
-  -moz-box-shadow: 1px 3px 8px #333;
-  -webkit-box-shadow: 1px 3px 8px #333;
-  box-shadow: 1px 3px 8px #333;
 }
+
 #categories {
   -moz-column-count: 2;
   -webkit-column-count: 2;
   -koz-column-count: 2;
   column-count: 2;
 }
+
 #wrapper {
   background-color: #F4F0E6;
   float: left;
@@ -107,23 +115,74 @@ input.affirmative {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
-  -moz-transform-origin: 25% 35%;
+  -moz-transform-origin: 45% 35%;
   -moz-transform: rotate(6deg);
-  -webkit-transform-origin: 20% 0;
+  -webkit-transform-origin: 45% 0;
   -webkit-transform: rotate(4deg);
-  transform-origin: 20% 0;
+  transform-origin: 45% 0;
   transform: rotate(4deg);
   -moz-box-shadow: 1px 3px 20px #111;
   -webkit-box-shadow: 1px 3px 20px #111;
   box-shadow: 1px 3px 20px #111;
 }
+
 #omnom {
+  position: relative;
   background: transparent url(/images/omnombg.png) no-repeat -8px 0;
   float: left;
-  padding: 60px 30px 10px;
-  width: 280px;
-  height: 495px;
+  padding: 65px 30px 0;
+  width: 220px;
+  height: 430px;
   background-color: #F4F0E6;
+}
+
+#omnom h2 {
+  text-indent: -9000px;
+}
+
+a.remove {
+  color: #42210B;
+  position: relative;
+  left: 170px;
+  top: -20px;
+  font: 10px "Arial Black", Gadget, sans-serif;
+  background: #F78288;
+  padding: 0 4px;
+  border: 3px solid #AF414C;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+}
+
+#new_nom {
+  position: absolute;
+  bottom: 13px;
+}
+
+#new_nom_name, #new_nom_details {
+  width: 200px;
+  font-size: .8em;
+  background: #fff;
+  padding: 0 .5em;
+  margin-right: .4em;
+  border: 3px solid #998675;
+  filter:alpha(opacity=80);
+  -moz-opacity:0.8;
+  -khtml-opacity: 0.8;
+  opacity: 0.8;
+}
+
+#new_nom_name {
+  height: 15px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+}
+
+#new_nom_details {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
 }
 
 #ohaipplz {
@@ -132,18 +191,22 @@ input.affirmative {
   width: 280px;
   height: 495px;
 }
+
 #ohaipplz h2 {
   text-indent: -9000px;
 }
+
 #ohaipplz form {
   margin: 80px 0 0;
   text-align: center;
 }
+
 #ohaipplz input {
   background: none;
   border: none;
   margin: 3px 0;
 }
+
 #ohaipplz p input {
   font-size: 15px;
   background: #fff;
@@ -159,8 +222,12 @@ input.affirmative {
   -webkit-border-radius: 20px;
   border-radius: 20px;
 }
+
 p input#nom {
-  margin: -27px 0 0 -160px;
+  position: relative;
+  z-index: 8;
+  top: -30px;
+  left: -170px;
   height: 242px;
   width: 472px;
   background: transparent url(/images/nom.png) no-repeat 10px 10px;
@@ -172,14 +239,16 @@ p input#nom {
   opacity: 1;
   -moz-transform-origin: 25% 35%;
   -moz-transform: rotate(-8deg);
-  -webkit-transform-origin: 20% 0;
-  -webkit-transform: rotate(4deg);
-  transform-origin: 20% 0;
-  transform: rotate(4deg);
+  -webkit-transform-origin: 25% 35%;
+  -webkit-transform: rotate(-8deg);
+  transform-origin: 25% 35%;
+  transform: rotate(-8deg);
 }
+
 input#creator_email {
   margin: 0 0 65px;
 }
+
 #sum_noms .name {
   font-weight: bold;
 }
