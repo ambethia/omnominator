@@ -83,7 +83,7 @@ body strong {
   background: transparent url(/images/title.png) no-repeat top right;
 }
 
-#tell_me_how {
+#tell_me_how, #glossary {
   font-size: .8em;
   z-index: 5;
   margin: 0px 10px 10px 10px;
@@ -340,31 +340,36 @@ a.remove {
 
 p input#nom {
   position: relative;
-  z-index: 8;
-  top: 30px;
-  left: -50px;
-  height: 122px;
-  width: 342px;
+  top: 0;
+  left: 150px;
+  height: 149px;
+  width: 409px;
   background: transparent url(/images/nom.png) no-repeat top left;
   border: none;
   text-indent: -9000px;
+  cursor: pointer;
   filter:alpha(opacity=100);
   -moz-opacity: 1;
   -khtml-opacity: 1;
   opacity: 1;
-  -moz-transform-origin: 25% 35%;
-  -moz-transform: rotate(-8deg);
-  -webkit-transform-origin: 25% 35%;
-  -webkit-transform: rotate(-8deg);
-  transform-origin: 25% 35%;
-  transform: rotate(-8deg);
+  -moz-transform-origin: -35% 35%;
+  -moz-transform: rotate(4deg);
+  -webkit-transform-origin: -35% 35%;
+  -webkit-transform: rotate(4deg);
+  transform-origin: -35% 35%;
+  transform: rotate(4deg);
 }
 
 #shiro_neko {
-  z-index: 200;
+  position: absolute;
+  left: 100px;
+  bottom: -150px;
   background: transparent url(/images/shiro_neko.png) no-repeat 0 0;
   height: 214px;
   width: 218px;
+  -moz-transform: rotate(-8deg);
+  -webkit-transform: rotate(-8deg);
+  transform: rotate(-8deg);
 }
 
 p input#nom:hover {
@@ -373,8 +378,8 @@ p input#nom:hover {
 
 p input#nom:active {
   position: relative;
-  top: 32px;
-  left: -50px;
+  top: 5px;
+  left: 150px;
 }
 
 input#creator_email {
@@ -433,11 +438,15 @@ a {
 }
 
 #mail {
-  float: left;
+  z-index: 10;
+  position: absolute;
   background: transparent url(/images/mail.png) no-repeat top left;
   height: 270px;
   width: 291px;
+  left: 500px;
+  top: 190px;
   padding: 56px 30px 0 75px;
+  margin-right: 175px;
   text-align: center;
 }
 
@@ -445,4 +454,30 @@ a {
   font-size: 1.7em;
 }
 
-#glossery
+#glossary {
+  position: absolute;
+  width: 275px;
+  left: 270px;
+  top: 120px;
+  padding: 10px 20px 40px;
+  -moz-transform-origin: 10% 90%;
+    -moz-transform: rotate(-1deg);
+    -webkit-transform-origin: 30% 0;
+    -webkit-transform: rotate(-1deg);
+    transform-origin: 0 0;
+    transform: rotate(-1deg);
+  -moz-box-shadow: 1px 3px 20px #111;
+   -webkit-box-shadow: 1px 3px 20px #111;
+   box-shadow: 1px 3px 20px #111;
+}
+
+#glossary h3 {
+  font-size: 3em;
+  text-align: center;
+  border-bottom: 4px dotted #42210B;
+}
+
+#glossary dt {
+  font: 1.6em "Layne Lighthouse Bold",Georgia, serif;
+  margin-top: .8em;
+}
