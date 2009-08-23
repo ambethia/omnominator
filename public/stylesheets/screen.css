@@ -486,7 +486,6 @@ label.inside[for=creator_email]   {top:6px; left:30px;}
   z-index: 5;
   margin: 0px 10px 10px 10px;
   background-color: #F4F0E6;
-  z-index: 1;
   position: relative;
   left: 130px;
   top: 80px;
@@ -553,8 +552,8 @@ label.inside[for=creator_email]   {top:6px; left:30px;}
 
 #vote input:active {
   position: absolute;
-  bottom: -32px;
-  right: 60px;
+  bottom: -132px;
+  left: 280px;
 }
 
 .result .pplz p {
@@ -601,8 +600,12 @@ label.inside[for=creator_email]   {top:6px; left:30px;}
   font-size: 2em;
 }
 
+#results_list
+{
+  z-index: 5;
+}
+
 #i_have_envelopes_plz {
-  z-index: 8;
   position: absolute;
   top: -15px;
   left: -30px;
@@ -615,7 +618,7 @@ h2#i_have_envelopes_plz {
   font-size: 1.4em;
   text-align: center;
   width: 165px;
-  padding: 20px 40px 0 180px; 
+  padding: 27px 40px 0 175px; 
   margin-right: 50px;
 }
 

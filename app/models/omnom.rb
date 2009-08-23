@@ -8,6 +8,7 @@ class Omnom < ActiveRecord::Base
 
   validate   :has_at_least_one_nom
   validate   :has_at_least_one_ppl
+  validates_presence_of :creator, :message => "Put yur e-mail in the first box!"
 
   accepts_nested_attributes_for :pplz, :noms
 
