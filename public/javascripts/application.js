@@ -1,6 +1,6 @@
 google.load("maps", "2");
 
-var MAX_OMNOMS = 4;
+var MAX_OMNOMS       = 4;
 var DEFAULT_LOCATION = "Anytown, USA";
 
 function initializeMap() {  
@@ -173,10 +173,27 @@ function iCanHazLocation(query) {
   });
 }
 
+function howManyNoms()
+{
+  return $("#sum_noms").children("li").length;
+}
+
+function has_omnoms()
+{
+  $("#omnom").show();
+  $("#empty_omnom").hide();  
+}
+
+function empty_omnom()
+{
+  $("#omnom").hide();
+  $("#empty_omnom").show();    
+}
+
 function addNom(omnom) {
   var list = $("#sum_noms");
 
-  if (list.children("li").length < MAX_OMNOMS) {
+  if ( howManyNoms() < MAX_OMNOMS) {
     var template = $.template('<li><div class="name">${name}</div><div class="details">${details}</div><a href="#" class="remove">X</a></li>');
     var nom_item = template.apply(omnom);
     list.append(nom_item).children(':last').hide().blindDown();
@@ -184,11 +201,19 @@ function addNom(omnom) {
   } else {
     $.flash.warn("My belly hurts", "Too much noms.")
   };
+  has_omnoms();
   $("#new_nom").reset();
 }
 
 function removeNom() {
+  var nom_count = howManyNoms();
+
   $(this).parent().blindUp().remove();
+
+  if( nom_count == 1 )
+  {
+    empty_omnom();
+  }
 }
 
 function createOmnom() {
@@ -205,43 +230,43 @@ function createOmnom() {
                   {
                     return this.value ? { email: this.value } : null
                   };
-  
+
+  var ajaxSuccess = function(response)
+                    {
+                      try { top.location.href = response.redirect_to; } catch(e) {}
+                    };
+
+  var ajaxError = function(XMLHttpRequest, textStatus, errorThrown)
+                  {
+                    try
+                    {
+                      var json = JSON.parse( XMLHttpRequest.responseText );
+                      var first_error = json[0][1];
+                      $.flash.failure("Oh, no you didn't", first_error);
+                    }
+                    catch(e)
+                    {
+                    }
+                    return false;
+                  };
+
+  var ajaxData = JSON.stringify({
+                    omnom: {
+                      pplz_attributes: $.makeArray($("#sum_pplz input:text[name=ppl_emailz]").map(pplMapper)),
+                      noms_attributes: $.makeArray($("#sum_noms li").map(nomMapper)),
+                      creator_email:   $("#creator_email").val()
+                    }
+                  });
+
   $.ajax({
-    type: "POST",
-    url: "/omnom",
-    cache: false,
+    type:        "POST",
+    url:         "/omnom",
+    cache:       false,
     contentType: "application/json",
-    dataType: "json",
-    data: JSON.stringify({
-      omnom: {
-        pplz_attributes: $.makeArray($("#sum_pplz input:text[name=ppl_emailz]").map(pplMapper)),
-        noms_attributes: $.makeArray($("#sum_noms li").map(nomMapper)),
-        creator_email:   $("#creator_email").val()
-      }
-    }),
-    error: function(XMLHttpRequest, textStatus, errorThrown)
-    {
-      try
-      {
-        var json = JSON.parse( XMLHttpRequest.responseText );
-        var first_error = json[0][1];
-        $.flash.failure("Oh, no you didn't", first_error);
-      }
-      catch(e)
-      {
-      }
-      return false;
-    },
-    success: function(response)
-    {
-      try
-      {
-        top.location.href = response.redirect_to;
-      }
-      catch(e)
-      {
-      }
-    }
+    dataType:    "json",
+    data:        ajaxData,
+    error:       ajaxError,
+    success:     ajaxSuccess
    });
 
    return false;
@@ -286,6 +311,9 @@ $(document).ready(function() {
       createOmnom();
       return false;
     });
+
+    $("#empty_omnom").show();    
+    $("#omnom").hide();
 
     $("#sum_noms .remove").click(removeNom);
   }
