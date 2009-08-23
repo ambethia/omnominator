@@ -17,7 +17,7 @@ class Omnom < ActiveRecord::Base
     update_attribute :activated_at, Time.now
 
     pplz_to_email_on_activation.each do |ppl|
-      Mailer.deliver_vote_invitation(self,ppl.email)
+      Mailer.deliver_vote_invitation(self, ppl)
     end
   end
 
@@ -49,7 +49,7 @@ class Omnom < ActiveRecord::Base
     end
 
     def send_creator_email
-      Mailer.deliver_vote_invitation(self,creator.email)
+      Mailer.deliver_creator_verification(creator)
     end
 
     def has_at_least_one_nom

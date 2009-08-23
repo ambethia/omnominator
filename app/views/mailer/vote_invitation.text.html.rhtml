@@ -2,5 +2,5 @@
   <h3>Hungry?</h3>
   <p><%= @creator %> wants to go eat with you, or claims to.</p>
   <p>They've asked you to help pick a place to go.  If you don't want to end up eating live deep-fried squid with extra-special sauce, you might want to vote.</p>
-  <p>To do so, go here: <%= @url %>.</p>
+  <p>To do so, go here: <%= vote_url(@ppl.verification_code) %>.</p>
 </div>

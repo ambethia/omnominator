@@ -1,19 +1,17 @@
 class Mailer < ActionMailer::Base
   
-  def creator_verification(omnom, ppl_email)
-    @recipients         = ppl_email
+  def creator_verification(ppl)
+    @recipients         = ppl.email
     @subject            = "Activate your Omnominator!"
     @sent_on            = Time.now
-    @body[:ppl_email]   = ppl_email
-    @body[:url]         = "http://failblog.com" #url_for(:host => host, :action=>"index", :controller=>"home")
+    @body[:ppl]         = ppl
   end
   
-  def vote_invitation(omnom, ppl_email)
-    @recipients         = ppl_email
+  def vote_invitation(omnom, ppl)
+    @recipients         = ppl.email
     @subject            = "You've been asked to pick a place to eat on OmNominator"
     @sent_on            = Time.now
-    @body[:ppl_email]   = ppl_email
-    @body[:url]         = "http://failblog.com" #url_for(:host => host, :action=>"index", :controller=>"home")
+    @body[:ppl]         = ppl
     @body[:creator]     = omnom.creator.name.nil? ? omnom.creator.email : omnom.creator.name
   end
 end
