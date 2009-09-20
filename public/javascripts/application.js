@@ -271,13 +271,13 @@ function addNom(omnom) {
     }
     var nom_template  = $.template('<li><div class="name">${name}</div><div class="details">${details}</div><a href="#" class="remove">X</a></li>');
     var nom_item      = nom_template.apply(omnom);
-    list.append(nom_item).children(':last').hide().blindDown();
+    list.append(nom_item).children(':last').hide().slideDown();
     $("#sum_noms .remove").click(removeNom);
   } else {
     $.flash.warn("Too much noms.", "My belly hurts")
   };
   has_omnoms();
-  $("#new_nom").reset();
+  $("#new_nom")[0].reset();
 }
 
 function removeNom() {
