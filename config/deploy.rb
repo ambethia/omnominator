@@ -1,6 +1,6 @@
 set  :application,           "omnominator"
 set  :repository,            "git@github.com:ambethia/omnominator.git"
-set  :branch,                "master"
+set  :branch,                "release"
 set  :scm,                   :git
 set  :git_enable_submodules, true
 set  :deploy_via,            :remote_cache
