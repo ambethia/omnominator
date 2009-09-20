@@ -1,6 +1,6 @@
 set  :application,           "omnominator"
-set  :repository,            "git@github.com:railsrumble/rr09-team-174.git"
-set  :branch,                "railsrumble09"
+set  :repository,            "git@github.com:ambethia/omnominator.git"
+set  :branch,                "master"
 set  :scm,                   :git
 set  :git_enable_submodules, true
 set  :deploy_via,            :remote_cache
@@ -8,12 +8,14 @@ role :web,                   "omnom"
 role :app,                   "omnom"
 role :db,                    "omnom", :primary => true
 
+ssh_options[:forward_agent] = true
+
 namespace :deploy do
   task :custom_symlinks do
     run "ln -nfs #{shared_path}/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{shared_path}/action_mailer.yml #{release_path}/config/action_mailer.yml"
   end
-  
+
   desc "Restart Passenger"
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "touch #{current_path}/tmp/restart.txt"
