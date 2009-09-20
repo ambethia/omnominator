@@ -283,7 +283,7 @@ function addNom(omnom) {
 function removeNom() {
   var nom_count = howManyNoms();
 
-  $(this).parent().blindUp().remove();
+  $(this).parent().slideUp().remove();
 
   if( nom_count == 1 )
   {
