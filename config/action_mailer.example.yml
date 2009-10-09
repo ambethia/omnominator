@@ -3,5 +3,5 @@
 :port: 587
 :domain: omnominator.com
 :authentication: :plain
-:user_name: no-reply@omnominator.com
+:user_name: noreply@omnominator.com
 :password: 
