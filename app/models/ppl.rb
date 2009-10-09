@@ -3,7 +3,9 @@ class Ppl < ActiveRecord::Base
   belongs_to                  :omnom
   belongs_to                  :voted_nom, :class_name => "Nom"
 
-  validates_presence_of :email
+  validates_format_of :email,
+     :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i,
+     :message => "Someone's email address is invalid!"
 
   # We are the same ppl if we have the same email
   def ===(other)

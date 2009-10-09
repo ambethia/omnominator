@@ -48,7 +48,7 @@ class Omnom < ActiveRecord::Base
 
   private
     def pplz_to_email_on_activation
-      pplz.reject { |ppl| ppl == creator }      
+      pplz.reject { |ppl| ppl == creator }
     end
 
     def send_creator_email
